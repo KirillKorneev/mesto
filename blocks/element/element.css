@@ -1,0 +1,12 @@
+@import url(./__photo/element__photo.css);
+@import url(./__name/element__name.css);
+@import url(./__info/element__info.css);
+@import url(./__like/element__like.css);
+
+.element {
+    width: 282px;
+    height: 361px;
+    background:white;
+    margin: auto;
+    border-radius: 10px;
+}

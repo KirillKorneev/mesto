@@ -1,0 +1,31 @@
+@import url(./__close/edit__close.css);
+
+.edit {
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    border-radius: 10px;
+    height: 330px;
+    margin: auto;
+    border: 0;
+    position: fixed;
+}
+
+@media screen and (min-width: 768px) {
+    .edit {
+        width: 430px;
+        height: 300px;
+        top: calc(50% - 165px);
+        left: calc(50% - 215px);
+        padding-bottom: 37px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .edit {
+        width: 282px;
+        height: 361px;
+        top: calc(50% - 180px);
+        left: calc(50% - 141px);
+    }
+}

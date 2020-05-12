@@ -1,0 +1,40 @@
+.edit__close {
+    position: absolute;
+    right: -40.7px;
+    top: -40.7px;
+    width: 40.7px;
+    height: 40.7px;
+    cursor: pointer;
+    opacity: 1;
+    background-color: transparent;
+    border: 0px;
+}
+
+.edit__close:hover {
+    opacity: 0.6;
+}
+
+.edit__close:before, .edit__close:after {
+    position: absolute;
+    right: -4px;
+    content: '';
+    height: 4px;
+    width: 44px;
+    background-color: white;
+}
+
+.edit__close:before {
+    transform: rotate(45deg);
+}
+
+.edit__close:after {
+    transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 767px) {
+    .edit__close {
+        position: absolute;
+        right: 0px;
+        top: -50px;
+    }
+}

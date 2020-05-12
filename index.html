@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+        <div class="header__logo"></div>
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__avatar"></div>
+            <div class="profile__info">
+                <p class="profile__name">Жак-Ив Кусто</p>
+                <div class="profile__edit"></div>
+                <p class="profile__about">Исследователь океана</p>
+            </div>
+            <div class="profile__button"></div>
+        </section>
+        <section class="gallery">
+            <ul class="elements">
+                <li class="element">
+                    <img src="./images/moscow.jpg" alt="Храм покрова что на рву - москва" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Москва</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/elbrus.png" alt="эльбрус" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Гора Эльбрус</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/korochaevsk.jpg" alt="Карачаевск" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Карачаевск</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/donbai.png" alt="Домбай" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Домбай</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/ny.jpg" alt="Нью-Йорк" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Нью-Йорк</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+                <li class="element">
+                <img src="./images/africa.jpg" alt="Африка" class="element__photo">
+                    <div class="element__info">
+                        <p class="element__name">Африка</p>
+                        <div class="element__like"></div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!--Не сразу увидел, как рекомендуют делать этот блок, поэтому у меня не так, надеюсь некритично:)-->
+        <section class="pop pop_open">
+            <div class="edit">
+                <form class="form">
+                    <p class="form__title">Редактировать профиль</p>
+                    <input class="form__input form__input_el_name" type="text" name="firstname" value="Введите имя">
+                    <input class="form__input form__input_el_spec" type="text" name="job" value="Специализация">
+                    <button class="form__button">Сохранить</button>
+                </form>
+                <button class="edit__close"></button>
+            </div>
+        </section>
+        <footer class="footer">
+            &copy; 2020 Mesto Russia
+        </footer>
+    </main>
+    <script src="./script/script.js"></script>
+</body>
+</html>
