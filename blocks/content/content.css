@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1024px) {
     .content {
         margin: auto;
         margin-top: 40px;

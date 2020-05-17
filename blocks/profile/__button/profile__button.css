@@ -1,9 +1,14 @@
 .profile__button {
-    background-image: url(../../../images/add_button.png);
-    background-size: cover;
+    padding: 0px;
+    margin: 0px;
     width: 150px;
     height: 50px;
     cursor: pointer;
+    background-color: black;
+    background-image: url(../../../images/add_button.svg);
+    background-size: cover;
+    border: 0px;
+    
 }
 
 .profile__button:hover {
@@ -12,14 +17,13 @@
 
 @media screen and (min-width: 768px) {
     .profile__button {
-        background-image: url(../../../images/add_button.png);
         margin-left: auto;
     }
 }
 
 @media screen and (max-width: 767px) {
     .profile__button {
-        background-image: url(../../../images/add_button_big.png);
+        background-image: url(../../../images/add_button_big.svg);
         width: 282px;
         height: 50px;
         margin: auto;

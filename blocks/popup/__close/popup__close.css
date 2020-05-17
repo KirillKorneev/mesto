@@ -1,4 +1,4 @@
-.edit__close {
+.popup__close {
     position: absolute;
     right: -40.7px;
     top: -40.7px;
@@ -10,11 +10,11 @@
     border: 0px;
 }
 
-.edit__close:hover {
+.popup__close:hover {
     opacity: 0.6;
 }
 
-.edit__close:before, .edit__close:after {
+.popup__close:before, .popup__close:after {
     position: absolute;
     right: -4px;
     content: '';
@@ -23,16 +23,16 @@
     background-color: white;
 }
 
-.edit__close:before {
+.popup__close:before {
     transform: rotate(45deg);
 }
 
-.edit__close:after {
+.popup__close:after {
     transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 767px) {
-    .edit__close {
+    .popup__close {
         position: absolute;
         right: 0px;
         top: -50px;

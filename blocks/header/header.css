@@ -3,8 +3,8 @@
 .header {
     border-bottom: 1px solid #545454;
     width: 882px;
-    height: 74px;
     margin: auto;
+    padding-bottom: 41px;
 }
 
 @media screen and (min-width: 1024px){

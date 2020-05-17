@@ -1,31 +1,32 @@
 @import url(./__close/edit__close.css);
 
-.edit {
+.popup__edit {
     padding: 0px;
     margin: 0px;
-    background-color: white;
+    background-color: #FFFFFF;
     border-radius: 10px;
-    height: 330px;
     margin: auto;
     border: 0;
     position: fixed;
+    padding-bottom: 37px;
 }
 
 @media screen and (min-width: 768px) {
-    .edit {
+    .popup__edit {
         width: 430px;
-        height: 300px;
         top: calc(50% - 165px);
+        bottom: calc(50% - 165px);
         left: calc(50% - 215px);
-        padding-bottom: 37px;
+        right: calc(50% - 215px);
     }
 }
 
 @media screen and (max-width: 767px) {
-    .edit {
+    .popup__edit {
         width: 282px;
-        height: 361px;
         top: calc(50% - 180px);
+        bottom: calc(50% - 180px);
         left: calc(50% - 141px);
+        right: calc(50% - 141px);
     }
 }

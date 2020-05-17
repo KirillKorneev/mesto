@@ -14,72 +14,72 @@
         <section class="profile">
             <div class="profile__avatar"></div>
             <div class="profile__info">
-                <p class="profile__name">Жак-Ив Кусто</p>
-                <div class="profile__edit"></div>
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit"></button>
                 <p class="profile__about">Исследователь океана</p>
             </div>
-            <div class="profile__button"></div>
+            <button type="button" class="profile__button"></button>
         </section>
         <section class="gallery">
             <ul class="elements">
                 <li class="element">
                     <img src="./images/moscow.jpg" alt="Храм покрова что на рву - москва" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Москва</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Москва</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
                 <li class="element">
-                    <img src="./images/elbrus.png" alt="эльбрус" class="element__photo">
+                    <img src="./images/elbrus.jpg" alt="эльбрус" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Гора Эльбрус</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Гора Эльбрус</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/korochaevsk.jpg" alt="Карачаевск" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Карачаевск</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Карачаевск</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/donbai.png" alt="Домбай" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Домбай</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Домбай</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/ny.jpg" alt="Нью-Йорк" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Нью-Йорк</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Нью-Йорк</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
                 <li class="element">
                 <img src="./images/africa.jpg" alt="Африка" class="element__photo">
                     <div class="element__info">
-                        <p class="element__name">Африка</p>
-                        <div class="element__like"></div>
+                        <h2 class="element__name">Африка</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </li>
             </ul>
         </section>
         <!--Не сразу увидел, как рекомендуют делать этот блок, поэтому у меня не так, надеюсь некритично:)-->
-        <section class="pop pop_open">
-            <div class="edit">
+        <section class="popup popup_close">
+            <div class="popup__edit">
                 <form class="form">
-                    <p class="form__title">Редактировать профиль</p>
-                    <input class="form__input form__input_el_name" type="text" name="firstname" value="Введите имя">
-                    <input class="form__input form__input_el_spec" type="text" name="job" value="Специализация">
-                    <button class="form__button">Сохранить</button>
+                    <h2 class="form__title">Редактировать профиль</h2>
+                    <input required class="form__input form__input_el_name" type="text" name="firstname" value="Введите имя">
+                    <input required class="form__input form__input_el_spec" type="text" name="job" value="Специализация">
+                    <button type="sumbit" class="form__button">Сохранить</button>
                 </form>
-                <button class="edit__close"></button>
+                <button type="button" class="popup__close"></button>
             </div>
         </section>
         <footer class="footer">
-            &copy; 2020 Mesto Russia
+            <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </main>
     <script src="./script/script.js"></script>

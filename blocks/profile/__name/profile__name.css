@@ -7,12 +7,7 @@
     font-weight: 500;
     font-size: 42px;
     grid-area: name;
-}
-
-@media screen and (min-width: 425px) and (max-width: 767px) {
-    .profile__name {
-        margin: auto;
-    }
+    margin: auto;
 }
 
 @media screen and (max-width: 425px) {
@@ -20,6 +15,5 @@
         height: 38px;
         font-size: 27px;
         line-height: 56px;
-        margin: auto;
     }
 }
