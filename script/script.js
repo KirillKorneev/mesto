@@ -10,13 +10,15 @@ let jobInput = formElement.querySelector('.form__input_el_spec'); //подпис
 let formButton = formElement.querySelector('.form__button'); //кнопка сохранить
 let textName = profileName.textContent;
 let textJob = profileJob.textContent;
-nameInput.setAttribute("value", textName);
-jobInput.setAttribute("value", textJob);
 
+//Честно, мне максимально непонятно, как вставлять в инпут значение через textcontent
+//Почему не подходить решение с value
 
 ///Функция закрытия формы, с отправкой
 function formOpenClose() {
     formElement.classList.toggle('popup_close');
+    nameInput.setAttribute("value", textName);
+    jobInput.setAttribute("value", textJob);
 }
 
 ///Функция закрытия формы, без отправки
@@ -28,6 +30,9 @@ function formClose() {
 ///Функция отправки формы
 function formSubmitHandler (evt) {
     
+    
+
+
     evt.preventDefault();
     let valueName = nameInput.value;
     let valueJob = jobInput.value;
