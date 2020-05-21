@@ -9,16 +9,11 @@
     border: 0;
     position: fixed;
     padding-bottom: 37px;
-}
-
-@media screen and (min-width: 768px) {
-    .popup__edit {
-        width: 430px;
-        top: calc(50% - 165px);
-        bottom: calc(50% - 165px);
-        left: calc(50% - 215px);
-        right: calc(50% - 215px);
-    }
+    width: 430px;
+    top: calc(50% - 165px);
+    bottom: calc(50% - 165px);
+    left: calc(50% - 215px);
+    right: calc(50% - 215px);
 }
 
 @media screen and (max-width: 767px) {

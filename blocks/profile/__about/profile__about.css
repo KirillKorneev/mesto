@@ -7,6 +7,10 @@
     line-height: 22px;
     color: #FFFFFF;
     grid-area: about;
+    text-overflow: ellipsis;
+    min-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 425px) {
