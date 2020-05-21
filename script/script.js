@@ -16,9 +16,9 @@ let textJob = profileJob.textContent;
 
 ///Функция закрытия формы, с отправкой
 function formOpenClose() {
-    formElement.classList.toggle('popup_close');
     nameInput.setAttribute("value", textName);
     jobInput.setAttribute("value", textJob);
+    formElement.classList.toggle('popup_close');
 }
 
 ///Функция закрытия формы, без отправки
@@ -29,9 +29,6 @@ function formClose() {
 
 ///Функция отправки формы
 function formSubmitHandler (evt) {
-    
-    
-
 
     evt.preventDefault();
     let valueName = nameInput.value;
