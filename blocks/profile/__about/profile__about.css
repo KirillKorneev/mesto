@@ -8,7 +8,7 @@
     color: #FFFFFF;
     grid-area: about;
     text-overflow: ellipsis;
-    min-width: 100%;
+    max-width: 400px;
     overflow: hidden;
     white-space: nowrap;
 }

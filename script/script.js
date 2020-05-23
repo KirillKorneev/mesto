@@ -1,23 +1,20 @@
-// Находим форму в DOM
-let formElement = document.querySelector('.popup'); //попап
-let form = document.querySelector('.form'); //форма
-let profileEdit = document.querySelector('.profile__edit'); //кнопка редактирования
-let formCloseButton = formElement.querySelector('.popup__close'); //кнопка закрытие формы
-let profileName = document.querySelector('.profile__name'); //имя в профиле
-let profileJob = document.querySelector('.profile__about');  //подпись в профиле
-let nameInput = formElement.querySelector('.form__input_el_name'); //имя в форме
-let jobInput = formElement.querySelector('.form__input_el_spec'); //подпись в форме
-let formButton = formElement.querySelector('.form__button'); //кнопка сохранить
-let textName = profileName.textContent;
-let textJob = profileJob.textContent;
+const formElement = document.querySelector('.popup'); //попап
+const form = document.querySelector('.form'); //форма
+const profileEdit = document.querySelector('.profile__edit'); //кнопка редактирования
+const formCloseButton = formElement.querySelector('.popup__close'); //кнопка закрытие формы
+const profileName = document.querySelector('.profile__name'); //имя в профиле
+const profileJob = document.querySelector('.profile__about');  //подпись в профиле
+const nameInput = formElement.querySelector('.form__input_el_name'); //имя в форме
+const jobInput = formElement.querySelector('.form__input_el_spec'); //подпись в форме
+const formButton = formElement.querySelector('.form__button'); //кнопка сохранить
 
 //Честно, мне максимально непонятно, как вставлять в инпут значение через textcontent
 //Почему не подходить решение с value
 
-///Функция закрытия формы, с отправкой
+///Функция открытия формы
 function formOpenClose() {
-    nameInput.setAttribute("value", textName);
-    jobInput.setAttribute("value", textJob);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
     formElement.classList.toggle('popup_close');
 }
 
@@ -31,15 +28,13 @@ function formClose() {
 function formSubmitHandler (evt) {
 
     evt.preventDefault();
-    let valueName = nameInput.value;
-    let valueJob = jobInput.value;
-    profileName.textContent = valueName;
-    profileJob.textContent = valueJob;
-    
-    formClose(); 
+
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+
+    formClose();
+
 }
-
-
 
 profileEdit.addEventListener('click', formOpenClose); ///открытие формы
 
