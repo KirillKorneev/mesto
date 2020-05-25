@@ -16,10 +16,10 @@
 
 @media screen and (max-width: 767px) {
     .popup__edit {
-        width: 282px;
+        width: 240px;
         top: calc(50% - 180px);
         bottom: calc(50% - 180px);
         left: calc(50% - 141px);
         right: calc(50% - 141px);
-    }
+    } 
 }

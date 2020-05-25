@@ -7,9 +7,56 @@ const profileJob = document.querySelector('.profile__about');  //подпись 
 const nameInput = formElement.querySelector('.form__input_el_name'); //имя в форме
 const jobInput = formElement.querySelector('.form__input_el_spec'); //подпись в форме
 const formButton = formElement.querySelector('.form__button'); //кнопка сохранить
+const profileAddButton = document.querySelector('.profile__button'); //кнопка добавления карточки
+const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
+const closeButton = formAddCard.querySelector('popup__close'); //кнопка закрытия попапа добавления карточек
 
-//Честно, мне максимально непонятно, как вставлять в инпут значение через textcontent
-//Почему не подходить решение с value
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const elements = document.querySelector('.elements'); //список всех карточек
+
+///Функция добавления первых 6 карточек
+function addCards (el) {
+    const elementTemplate = document.querySelector("#tem-element").content;
+    const element = elementTemplate.cloneNode(true); 
+
+    const elementImage = element.querySelector(".element__photo"); 
+    const elementTitle = element.querySelector(".element__name"); 
+
+    elementImage.src = el.link;
+    elementTitle.textContent = el.name;
+
+    elements.prepend(element);
+}
+
+function addNewCard () {
+    formAddCard.classList.toggle('popup_close');
+}
 
 ///Функция открытия формы
 function formOpenClose() {
@@ -36,8 +83,22 @@ function formSubmitHandler (evt) {
 
 }
 
-profileEdit.addEventListener('click', formOpenClose); ///открытие формы
+///Выводим первые 6 карточек
+for (let i = 0; i < initialCards.length; i++) {
+    console.log(i);
+    addCards(initialCards[i]);
+}
 
-form.addEventListener('submit', formSubmitHandler); ///отправка формы
+profileAddButton.addEventListener('click', addNewCard); //добавление карточки
 
-formCloseButton.addEventListener('click', formClose); ///закрытие без отправки
+closeButton.addEventListener('click', function (){
+    formAddCard.classList.toggle('popup_close');
+});
+
+
+profileEdit.addEventListener('click', formOpenClose); //открытие формы
+
+form.addEventListener('submit', formSubmitHandler); //отправка формы
+
+formCloseButton.addEventListener('click', formClose); //закрытие без отправки
+

@@ -22,48 +22,15 @@
         </section>
         <section class="gallery">
             <ul class="elements">
-                <li class="element">
-                    <img src="./images/moscow.jpg" alt="Храм покрова что на рву - москва" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Москва</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/elbrus.jpg" alt="эльбрус" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/korochaevsk.jpg" alt="Карачаевск" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Карачаевск</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/donbai.png" alt="Домбай" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/ny.jpg" alt="Нью-Йорк" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Нью-Йорк</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                <img src="./images/africa.jpg" alt="Африка" class="element__photo">
-                    <div class="element__info">
-                        <h2 class="element__name">Африка</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </li>
+                <template id="tem-element">
+                    <li class="element">
+                        <img class="element__photo" src="" alt="Описание фото">
+                        <div class="element__info">
+                            <h2 class="element__name">Название</h2>
+                            <button type="button" class="element__like" aria-label="Лайк"></button>
+                        </div>
+                    </li>
+                </template>
             </ul>
         </section>
         <section class="popup popup_close">
@@ -77,6 +44,29 @@
                 <button type="button" class="popup__close"></button>
             </div>
         </section>
+        <!--Новый попап создания карточки-->
+        <section class="popup popup_close popup_new">
+            <div class="popup__edit">
+                <form class="form" action="#" method="post" name="form">
+                    <h2 class="form__title">Новое место</h2>
+                    <input required class="form__input form__input_el_name" type="text" name="firstname" placeholder="Название" value="">
+                    <input required class="form__input form__input_el_spec" type="text" name="job" placeholder="Ссылка на картинку" value="">
+                    <button class="form__button" aria-label="Создать">Создать</button>
+                </form>
+                <button type="button" class="popup__close"></button>
+            </div>
+        </section>
+        <!--!!!-->
+        <!--Новый попап увеличения картинки-->
+        <!--<section class="popup">
+            <div class="pop-image">
+                <div class="pop-image__container">
+                    <img class="pop-image__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="">
+                    <p class="pop-image__about">ЧЛЕН</p>
+                    <button type="button" class="pop-image__close"></button>
+                </div>
+            </div>
+        </section>-->
         <footer class="footer">
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>

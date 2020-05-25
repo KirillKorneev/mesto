@@ -24,6 +24,6 @@
 
 @media screen and (max-width: 767px) {
     .form__input {
-        width: 246px;
+        width: 200px;
     }
 }

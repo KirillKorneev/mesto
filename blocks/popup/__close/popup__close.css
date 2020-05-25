@@ -34,6 +34,14 @@
 @media screen and (max-width: 767px) {
     .popup__close {
         right: 0px;
-        top: -50px;
+        top: -35px;
+    }
+
+    .popup__close:before, .popup__close:after {
+        position: absolute;
+        right: -28px;
+        content: '';
+        height: 4px;
+        width: 30px; 
     }
 }

@@ -13,6 +13,7 @@
     text-align: center;
     border-radius: 2px;
     cursor: pointer;
+    margin: auto;
     margin-top: 18px;
 }
 
@@ -28,6 +29,6 @@
 
 @media screen and (max-width: 767px) {
     .form__button {
-        width: 246px;
+        width: 200px;
     }
 }
