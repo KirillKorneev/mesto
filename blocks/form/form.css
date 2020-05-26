@@ -1,3 +1,4 @@
+@import url(./_new/form_new.css);
 @import url(./__title/form__title.css);
 @import url(./__input/form__input.css);
 @import url(./__input/_el/form__input_el_name.css);
@@ -5,7 +6,6 @@
 @import url(./__button/form__button.css);
 @import url(./__input/_new/form__input_new_link.css);
 @import url(./__input/_new/form__input_new_name.css);
-@import url(./_new/form_new.css);
 
 .form {
     padding: 0px;

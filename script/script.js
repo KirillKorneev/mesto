@@ -13,6 +13,7 @@ const closeButton = document.querySelector('.popup__close_new'); //кнопка 
 const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
 const nameElement = document.querySelector('.form__input_new_name');
 const linkElement = document.querySelector('.form__input_new_link');
+const buttonAdd = document.querySelector('.form__button_new');
 
 console.log(formAdd);
 
@@ -58,9 +59,14 @@ function addCards(el) {
     elementImage.src = el.link;
     elementTitle.textContent = el.name;
 
+    element.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_black');
+    });
+
     elements.prepend(element);
 }
 
+///Функция добавления новой карточки
 function addNewCard(evt) {
 
     evt.preventDefault();
@@ -76,6 +82,11 @@ function addNewCard(evt) {
 
     elementImage.src = linkElement.value;
     elementTitle.textContent = nameElement.value;
+
+    const buttonLike  = document.querySelector('.element__like');
+
+  // поставить лайк
+    
 
     elements.prepend(element);
 
@@ -107,7 +118,10 @@ function formSubmitHandler (evt) {
     formClose();
 }
 
-
+function likeIt() {
+    buttonLike.style.background = 'url(../../../../images/like_black.svg);';
+    console.log('hello');
+}
 
 
 ///Выводим первые 6 карточек
@@ -126,8 +140,12 @@ form.addEventListener('submit', formSubmitHandler); //отправка форм�
 
 formCloseButton.addEventListener('click', formClose); //закрытие без отправки
 
-formAdd.addEventListener('sumbit', addNewCard);
+formAdd.addEventListener('submit', addNewCard);
 
 closeButton.addEventListener('click', function() { //закрытие формы добавления, в случае если нажимается крестик
     formAddCard.classList.toggle('popup_close');
 });
+
+//document.querySelector('.element__like').addEventListener('click', function (evt) {
+//    evt.target.classList.toggle('element__like_black');
+//});
