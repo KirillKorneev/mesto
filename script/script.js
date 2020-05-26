@@ -9,7 +9,14 @@ const jobInput = formElement.querySelector('.form__input_el_spec'); //подпи
 const formButton = formElement.querySelector('.form__button'); //кнопка сохранить
 const profileAddButton = document.querySelector('.profile__button'); //кнопка добавления карточки
 const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
-const closeButton = formAddCard.querySelector('popup__close'); //кнопка закрытия попапа добавления карточек
+const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
+const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
+const nameElement = document.querySelector('.form__input_new_name');
+const linkElement = document.querySelector('.form__input_new_link');
+
+console.log(formAdd);
+
+console.log(form);
 
 const initialCards = [
     {
@@ -41,7 +48,7 @@ const initialCards = [
 const elements = document.querySelector('.elements'); //список всех карточек
 
 ///Функция добавления первых 6 карточек
-function addCards (el) {
+function addCards(el) {
     const elementTemplate = document.querySelector("#tem-element").content;
     const element = elementTemplate.cloneNode(true); 
 
@@ -54,7 +61,24 @@ function addCards (el) {
     elements.prepend(element);
 }
 
-function addNewCard () {
+function addNewCard(evt) {
+
+    evt.preventDefault();
+
+    const elementTemplate = document.querySelector("#tem-element").content; 
+    const element = elementTemplate.cloneNode(true); 
+
+    const elementImage = element.querySelector(".element__photo"); 
+    const elementTitle = element.querySelector(".element__name");
+
+    console.log(linkElement.value);
+    console.log(nameElement.value);
+
+    elementImage.src = linkElement.value;
+    elementTitle.textContent = nameElement.value;
+
+    elements.prepend(element);
+
     formAddCard.classList.toggle('popup_close');
 }
 
@@ -70,30 +94,30 @@ function formClose() {
     formElement.classList.toggle('popup_close');
 }
 
-
 ///Функция отправки формы
 function formSubmitHandler (evt) {
 
     evt.preventDefault();
 
+    console.log("bye");
+
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 
     formClose();
-
 }
+
+
+
 
 ///Выводим первые 6 карточек
 for (let i = 0; i < initialCards.length; i++) {
-    console.log(i);
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', addNewCard); //добавление карточки
-
-closeButton.addEventListener('click', function (){
-    formAddCard.classList.toggle('popup_close');
-});
+profileAddButton.addEventListener('click', function() {
+    formAddCard.classList.toggle('popup_close'); 
+}); //открытие формы добавления карточки
 
 
 profileEdit.addEventListener('click', formOpenClose); //открытие формы
@@ -102,3 +126,8 @@ form.addEventListener('submit', formSubmitHandler); //отправка форм�
 
 formCloseButton.addEventListener('click', formClose); //закрытие без отправки
 
+formAdd.addEventListener('sumbit', addNewCard);
+
+closeButton.addEventListener('click', function() { //закрытие формы добавления, в случае если нажимается крестик
+    formAddCard.classList.toggle('popup_close');
+});
