@@ -11,13 +11,11 @@ const profileAddButton = document.querySelector('.profile__button'); //кноп�
 const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
 const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
 const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
-const nameElement = document.querySelector('.form__input_new_name');
-const linkElement = document.querySelector('.form__input_new_link');
+const card = {
+    name: document.querySelector('.form__input_new_name'),
+    link: document.querySelector('.form__input_new_link')
+};
 const buttonAdd = document.querySelector('.form__button_new');
-
-console.log(formAdd);
-
-console.log(form);
 
 const initialCards = [
     {
@@ -48,8 +46,15 @@ const initialCards = [
 
 const elements = document.querySelector('.elements'); //список всех карточек
 
-///Функция добавления первых 6 карточек
+///Функция закрытия формы, без отправки
+function formClose() {
+    formElement.classList.toggle('popup_close');
+}
+
+
+///Функция добавления карточек и лайков
 function addCards(el) {
+
     const elementTemplate = document.querySelector("#tem-element").content;
     const element = elementTemplate.cloneNode(true); 
 
@@ -66,43 +71,26 @@ function addCards(el) {
     elements.prepend(element);
 }
 
-///Функция добавления новой карточки
+///Функция формы добавления новой карточки
 function addNewCard(evt) {
 
     evt.preventDefault();
 
-    const elementTemplate = document.querySelector("#tem-element").content; 
-    const element = elementTemplate.cloneNode(true); 
+    const cardValue = {
+        name: card.name.value,
+        link: card.link.value
+    };
 
-    const elementImage = element.querySelector(".element__photo"); 
-    const elementTitle = element.querySelector(".element__name");
-
-    console.log(linkElement.value);
-    console.log(nameElement.value);
-
-    elementImage.src = linkElement.value;
-    elementTitle.textContent = nameElement.value;
-
-    const buttonLike  = document.querySelector('.element__like');
-
-  // поставить лайк
-    
-
-    elements.prepend(element);
+    addCards(cardValue);
 
     formAddCard.classList.toggle('popup_close');
 }
 
-///Функция открытия формы
+///Функция открытия формы профиля
 function formOpenClose() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    formElement.classList.toggle('popup_close');
-}
-
-///Функция закрытия формы, без отправки
-function formClose() {
-    formElement.classList.toggle('popup_close');
+    formClose(formElement);
 }
 
 ///Функция отправки формы
@@ -110,17 +98,10 @@ function formSubmitHandler (evt) {
 
     evt.preventDefault();
 
-    console.log("bye");
-
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 
-    formClose();
-}
-
-function likeIt() {
-    buttonLike.style.background = 'url(../../../../images/like_black.svg);';
-    console.log('hello');
+    formClose(formElement);
 }
 
 
@@ -129,23 +110,14 @@ for (let i = 0; i < initialCards.length; i++) {
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', function() {
-    formAddCard.classList.toggle('popup_close'); 
-}); //открытие формы добавления карточки
-
+profileAddButton.addEventListener('click', formClose); //открытие формы добавления карточки
 
 profileEdit.addEventListener('click', formOpenClose); //открытие формы
 
 form.addEventListener('submit', formSubmitHandler); //отправка формы
 
-formCloseButton.addEventListener('click', formClose); //закрытие без отправки
+formCloseButton.addEventListener('click', formClose(formElement)); //закрытие без отправки
 
 formAdd.addEventListener('submit', addNewCard);
 
-closeButton.addEventListener('click', function() { //закрытие формы добавления, в случае если нажимается крестик
-    formAddCard.classList.toggle('popup_close');
-});
-
-//document.querySelector('.element__like').addEventListener('click', function (evt) {
-//    evt.target.classList.toggle('element__like_black');
-//});
+closeButton.addEventListener('click', formClose);
