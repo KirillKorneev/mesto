@@ -29,10 +29,12 @@
                             <h2 class="element__name">Название</h2>
                             <button type="button" class="element__like" aria-label="Лайк"></button>
                         </div>
+                        <button type="button" class="element__delete" aria-label="Уßдалить"></button>
                     </li>
                 </template>
             </ul>
         </section>
+        <!--Попап смены имени и работы-->
         <section class="popup popup_close">
             <div class="popup__edit">
                 <form class="form" action="#" method="post" name="form">
@@ -44,7 +46,7 @@
                 <button type="button" class="popup__close"></button>
             </div>
         </section>
-        <!--Новый попап создания карточки-->
+        <!--Попап создания карточки-->
         <section class="popup popup_close popup_new">
             <div class="popup__edit">
                 <form class="form form_new" action="#" method="post" name="form">
@@ -57,16 +59,18 @@
             </div>
         </section>
         <!--!!!-->
-        <!--Новый попап увеличения картинки-->
-        <!--<section class="popup">
-            <div class="pop-image">
-                <div class="pop-image__container">
-                    <img class="pop-image__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="">
-                    <p class="pop-image__about">ЧЛЕН</p>
-                    <button type="button" class="pop-image__close"></button>
-                </div>
-            </div>
-        </section>-->
+        <!--Попап увеличения картинки-->
+        <section class = "pic-popup">
+                <section class="popup popup_close popup_photo">
+                    <div class="pop-image">
+                        <div class="pop-image__container">
+                            <img class="pop-image__image" src="" alt="">
+                            <p class="pop-image__about">ЧЛЕН</p>
+                            <button type="button" class="pop-image__close"></button>
+                        </div>
+                    </div>
+                </section>
+        </section>
         <footer class="footer">
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>

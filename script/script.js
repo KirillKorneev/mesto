@@ -12,10 +12,10 @@ const formAddCard = document.querySelector('.popup_new'); //попап доба�
 const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
 const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
 const card = {
-    name: document.querySelector('.form__input_new_name'),
-    link: document.querySelector('.form__input_new_link')
+    name: document.querySelector('.form__input_new_name'), //инпут названия в добавлении
+    link: document.querySelector('.form__input_new_link') //инпут ссылки в добавлении
 };
-const buttonAdd = document.querySelector('.form__button_new');
+const buttonAdd = document.querySelector('.form__button_new'); //плюсик добавления
 
 const initialCards = [
     {
@@ -45,14 +45,16 @@ const initialCards = [
 ];
 
 const elements = document.querySelector('.elements'); //список всех карточек
-
+const popupPhoto = document.querySelector('.pic-popup');
 ///Функция закрытия формы, без отправки
-function formClose() {
-    formElement.classList.toggle('popup_close');
+function formClose(el) {
+    console.log(el);
+    console.log('dick');
+    el.classList.toggle('popup_close');
 }
 
 
-///Функция добавления карточек и лайков
+///Функция добавления карточек и лайков / удаления каточек
 function addCards(el) {
 
     const elementTemplate = document.querySelector("#tem-element").content;
@@ -61,11 +63,29 @@ function addCards(el) {
     const elementImage = element.querySelector(".element__photo"); 
     const elementTitle = element.querySelector(".element__name"); 
 
+    const deleteButton = element.querySelector('.element__delete');
+
+    const popPhoto = document.querySelector('.popup_photo');
+    const popImage = popPhoto.querySelector('.pop-image__image');
+    const popName = popPhoto.querySelector('.pop-image__about');
+    
+
     elementImage.src = el.link;
     elementTitle.textContent = el.name;
 
     element.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_black');
+    });
+
+    deleteButton.addEventListener('click', function() {
+        deleteButton.closest('.element').remove();
+    });
+
+    elementImage.addEventListener('click', function() {
+        popImage.src = el.link;
+        popName.textContent = el.name;
+
+        popPhoto.classList.toggle('popup_close');
     });
 
     elements.prepend(element);
@@ -110,14 +130,25 @@ for (let i = 0; i < initialCards.length; i++) {
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', formClose); //открытие формы добавления карточки
+profileAddButton.addEventListener('click', function(){
+    formAddCard.classList.toggle('popup_close');
+}); //открытие формы добавления карточки
 
 profileEdit.addEventListener('click', formOpenClose); //открытие формы
 
 form.addEventListener('submit', formSubmitHandler); //отправка формы
 
-formCloseButton.addEventListener('click', formClose(formElement)); //закрытие без отправки
+formCloseButton.addEventListener('click', function(){
+    formElement.classList.toggle('popup_close');
+}); //закрытие без отправки
 
-formAdd.addEventListener('submit', addNewCard);
 
-closeButton.addEventListener('click', formClose);
+formAdd.addEventListener('submit', addNewCard); //отправка формы добавления
+
+closeButton.addEventListener('click', function(){
+    formAddCard.classList.toggle('popup_close');
+}); //закрытия формы добавления без отправки 
+
+document.querySelector('.pop-image__close').addEventListener('click', function(){
+    document.querySelector('.popup_photo').classList.toggle('popup_close');
+}); //закрытие попапа увелтичения фото
