@@ -46,10 +46,10 @@ const initialCards = [
 
 const elements = document.querySelector('.elements'); //список всех карточек
 const popupPhoto = document.querySelector('.pic-popup');
+
+
 ///Функция закрытия формы, без отправки
 function formClose(el) {
-    console.log(el);
-    console.log('dick');
     el.classList.toggle('popup_close');
 }
 
