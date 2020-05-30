@@ -6,11 +6,11 @@ const profileName = document.querySelector('.profile__name'); //имя в про
 const profileJob = document.querySelector('.profile__about');  //подпись в профиле
 const nameInput = formElement.querySelector('.form__input_el_name'); //имя в форме
 const jobInput = formElement.querySelector('.form__input_el_spec'); //подпись в форме
-const formButton = formElement.querySelector('.form__button'); //кнопка сохранить
 const profileAddButton = document.querySelector('.profile__button'); //кнопка добавления карточки
 const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
 const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
 const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
+const formPhoto = document.querySelector('.popup_photo'); //форма увеличения фото
 const card = {
     name: document.querySelector('.form__input_new_name'), //инпут названия в добавлении
     link: document.querySelector('.form__input_new_link') //инпут ссылки в добавлении
@@ -45,14 +45,22 @@ const initialCards = [
 ];
 
 const elements = document.querySelector('.elements'); //список всех карточек
-const popupPhoto = document.querySelector('.pic-popup');
 
 
-///Функция закрытия формы, без отправки
-function formClose(el) {
-    el.classList.toggle('popup_close');
+///Функция закрытия/открытия  формы, без отправки
+function toggleForm(el) {
+    if (el === formElement) {
+        nameInput.value = profileName.textContent;
+        jobInput.value = profileJob.textContent;
+    }
+    return function toggle(){
+        el.classList.toggle('popup_close');
+    }
 }
 
+function closeForm(el) {
+    el.classList.toggle('popup_close');
+}
 
 ///Функция добавления карточек и лайков / удаления каточек
 function addCards(el) {
@@ -64,6 +72,7 @@ function addCards(el) {
     const elementTitle = element.querySelector(".element__name"); 
 
     const deleteButton = element.querySelector('.element__delete');
+    const likeButton = element.querySelector('.element__like');
 
     const popPhoto = document.querySelector('.popup_photo');
     const popImage = popPhoto.querySelector('.pop-image__image');
@@ -73,7 +82,7 @@ function addCards(el) {
     elementImage.src = el.link;
     elementTitle.textContent = el.name;
 
-    element.querySelector('.element__like').addEventListener('click', function (evt) {
+    likeButton.addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_black');
     });
 
@@ -103,14 +112,7 @@ function addNewCard(evt) {
 
     addCards(cardValue);
 
-    formAddCard.classList.toggle('popup_close');
-}
-
-///Функция открытия формы профиля
-function formOpenClose() {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-    formClose(formElement);
+    closeForm(formAddCard);
 }
 
 ///Функция отправки формы
@@ -121,7 +123,7 @@ function formSubmitHandler (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 
-    formClose(formElement);
+    closeForm(formElement);
 }
 
 
@@ -130,25 +132,16 @@ for (let i = 0; i < initialCards.length; i++) {
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', function(){
-    formAddCard.classList.toggle('popup_close');
-}); //открытие формы добавления карточки
+profileAddButton.addEventListener('click', toggleForm(formAddCard)); //открытие формы добавления карточек
 
-profileEdit.addEventListener('click', formOpenClose); //открытие формы
+profileEdit.addEventListener('click', toggleForm(formElement)); //открытие формы
 
 form.addEventListener('submit', formSubmitHandler); //отправка формы
 
-formCloseButton.addEventListener('click', function(){
-    formElement.classList.toggle('popup_close');
-}); //закрытие без отправки
-
+formCloseButton.addEventListener('click', toggleForm(formElement)); //закрытие без отправки
 
 formAdd.addEventListener('submit', addNewCard); //отправка формы добавления
 
-closeButton.addEventListener('click', function(){
-    formAddCard.classList.toggle('popup_close');
-}); //закрытия формы добавления без отправки 
+closeButton.addEventListener('click', toggleForm(formAddCard));  //закрытия формы добавления без отправки 
 
-document.querySelector('.pop-image__close').addEventListener('click', function(){
-    document.querySelector('.popup_photo').classList.toggle('popup_close');
-}); //закрытие попапа увелтичения фото
+document.querySelector('.pop-image__close').addEventListener('click', toggleForm(formPhoto)); //закрытие попапа увелтичения фото
