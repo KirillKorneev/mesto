@@ -11,11 +11,12 @@ const formAddCard = document.querySelector('.popup_new'); //попап доба�
 const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
 const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
 const formPhoto = document.querySelector('.popup_photo'); //форма увеличения фото
+const popPhoto = document.querySelector('.popup_photo'); //попап увеличения фото
+const buttonClosePhoto = document.querySelector('.pop-image__close');
 const card = {
     name: document.querySelector('.form__input_new_name'), //инпут названия в добавлении
     link: document.querySelector('.form__input_new_link') //инпут ссылки в добавлении
 };
-const buttonAdd = document.querySelector('.form__button_new'); //плюсик добавления
 
 const initialCards = [
     {
@@ -48,7 +49,10 @@ const elements = document.querySelector('.elements'); //список всех к
 
 
 ///Функция закрытия/открытия  формы, без отправки
+///если здесь уьбрать отправку функции то в addEventListerner будут отсылаться undefined
+///а надо чтобы функция была, я решил проблему двумя строчками, не так, как писали вы, надеюсь некритично:) 
 function toggleForm(el) {
+    el.classList.toggle('popup_close');
     if (el === formElement) {
         nameInput.value = profileName.textContent;
         jobInput.value = profileJob.textContent;
@@ -58,9 +62,7 @@ function toggleForm(el) {
     }
 }
 
-function closeForm(el) {
-    el.classList.toggle('popup_close');
-}
+toggleForm(popPhoto);
 
 ///Функция добавления карточек и лайков / удаления каточек
 function addCards(el) {
@@ -74,7 +76,6 @@ function addCards(el) {
     const deleteButton = element.querySelector('.element__delete');
     const likeButton = element.querySelector('.element__like');
 
-    const popPhoto = document.querySelector('.popup_photo');
     const popImage = popPhoto.querySelector('.pop-image__image');
     const popName = popPhoto.querySelector('.pop-image__about');
     
@@ -94,7 +95,7 @@ function addCards(el) {
         popImage.src = el.link;
         popName.textContent = el.name;
 
-        popPhoto.classList.toggle('popup_close');
+        toggleForm(popPhoto);
     });
 
     elements.prepend(element);
@@ -112,7 +113,7 @@ function addNewCard(evt) {
 
     addCards(cardValue);
 
-    closeForm(formAddCard);
+    toggleForm(formAddCard);
 }
 
 ///Функция отправки формы
@@ -123,7 +124,7 @@ function formSubmitHandler (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 
-    closeForm(formElement);
+    toggleForm(formElement);
 }
 
 
@@ -144,4 +145,4 @@ formAdd.addEventListener('submit', addNewCard); //отправка формы д
 
 closeButton.addEventListener('click', toggleForm(formAddCard));  //закрытия формы добавления без отправки 
 
-document.querySelector('.pop-image__close').addEventListener('click', toggleForm(formPhoto)); //закрытие попапа увелтичения фото
+buttonClosePhoto.addEventListener('click', toggleForm(formPhoto)); //закрытие попапа увелтичения фото
