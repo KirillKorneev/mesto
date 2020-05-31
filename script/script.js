@@ -49,8 +49,7 @@ const elements = document.querySelector('.elements'); //список всех к
 
 
 ///Функция закрытия/открытия  формы, без отправки
-///если здесь убрать отправку функции то в addEventListerner будут отсылаться undefined,
-///а надо чтобы функция была, я решил проблему добавление 59 строки и немного переделал саму функцию
+//спасибо, так намного лучше:)
 function toggleForm(el) {
     if (el === formElement) {
         nameInput.value = profileName.textContent;
