@@ -52,17 +52,12 @@ const elements = document.querySelector('.elements'); //список всех к
 ///если здесь убрать отправку функции то в addEventListerner будут отсылаться undefined,
 ///а надо чтобы функция была, я решил проблему добавление 59 строки и немного переделал саму функцию
 function toggleForm(el) {
-    el.classList.toggle('popup_close');
-    return function toggle(){
-        if (el === formElement) {
-            nameInput.value = profileName.textContent;
-            jobInput.value = profileJob.textContent;
-        }
-        el.classList.toggle('popup_close');
+    if (el === formElement) {
+        nameInput.value = profileName.textContent;
+        jobInput.value = profileJob.textContent;
     }
+    el.classList.toggle('popup_close');
 }
-
-toggleForm(popPhoto);
 
 ///Функция добавления карточек и лайков / удаления каточек
 function addCards(el) {
@@ -133,16 +128,16 @@ for (let i = 0; i < initialCards.length; i++) {
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', toggleForm(formAddCard)); //открытие формы добавления карточек
+profileAddButton.addEventListener('click', () => toggleForm(formAddCard)); //открытие формы добавления карточек
 
-profileEdit.addEventListener('click', toggleForm(formElement)); //открытие формы
+profileEdit.addEventListener('click', () => toggleForm(formElement)); //открытие формы
 
 form.addEventListener('submit', formSubmitHandler); //отправка формы
 
-formCloseButton.addEventListener('click', toggleForm(formElement)); //закрытие без отправки
+formCloseButton.addEventListener('click', () => toggleForm(formElement)); //закрытие без отправки
 
 formAdd.addEventListener('submit', addNewCard); //отправка формы добавления
 
-closeButton.addEventListener('click', toggleForm(formAddCard));  //закрытия формы добавления без отправки 
+closeButton.addEventListener('click', () => toggleForm(formAddCard));  //закрытия формы добавления без отправки 
 
-buttonClosePhoto.addEventListener('click', toggleForm(formPhoto)); //закрытие попапа увелтичения фото
+buttonClosePhoto.addEventListener('click', () => toggleForm(formPhoto)); //закрытие попапа увелтичения фото
