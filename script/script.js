@@ -49,14 +49,14 @@ const elements = document.querySelector('.elements'); //список всех к
 
 
 ///Функция закрытия/открытия  формы, без отправки
-///если здесь уьбрать отправку функции то в addEventListerner будут отсылаться undefined
-///а надо чтобы функция была, я решил проблему двумя строчками, не так, как писали вы, надеюсь некритично:) 
+///если здесь уьбрать отправку функции то в addEventListerner будут отсылаться undefined,
+///а надо чтобы функция была, я решил проблему добавление 59 строки
 function toggleForm(el) {
-    el.classList.toggle('popup_close');
     if (el === formElement) {
         nameInput.value = profileName.textContent;
         jobInput.value = profileJob.textContent;
     }
+    el.classList.toggle('popup_close');
     return function toggle(){
         el.classList.toggle('popup_close');
     }
