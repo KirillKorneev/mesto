@@ -1,0 +1,9 @@
+.form__input-error_el_spec {
+    top: calc(50% + 31px);
+}
+
+@media screen and (max-width: 767px) {
+    .form__input-error_el_spec {
+        top: calc(50% + 35px);
+    }
+}

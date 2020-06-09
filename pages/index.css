@@ -11,5 +11,6 @@
 @import url(../blocks/gallery/gallery.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_close/popup_close.css);
+@import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/pop-image/pop-image.css);
+@import url(../blocks/form/__button/_inactive/form__button_inactive.css);

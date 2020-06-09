@@ -6,6 +6,8 @@
 @import url(./__button/form__button.css);
 @import url(./__input/_new/form__input_new_link.css);
 @import url(./__input/_new/form__input_new_name.css);
+@import url(./__input-error/form__input-error.css);
+@import url(./__input/_error/form__input_error.css);
 
 .form {
     padding: 0px;
@@ -16,8 +18,9 @@
     margin-right: 10px;
     margin: auto;
     padding-top: 31px;
-    
+    position: relative;
     border: 0;
+    line-height: 15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -28,6 +31,7 @@
 
 @media screen and (max-width: 767px) {
     .form {
+        line-height: 10px;
         width: 200px;
     }
 }

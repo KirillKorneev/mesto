@@ -35,31 +35,35 @@
             </ul>
         </section>
         <!--Попап смены имени и работы-->
-        <section class="popup popup_close">
+        <section class="popup">
             <div class="popup__edit">
-                <form class="form" action="#" method="post" name="form">
+                <form name="formChange" class="form" action="#" method="post">
                     <h2 class="form__title">Редактировать профиль</h2>
-                    <input required class="form__input form__input_el_name" type="text" name="firstname" placeholder="Введите имя" value="">
-                    <input required class="form__input form__input_el_spec" type="text" name="job" placeholder="Специализация" value="">
-                    <button class="form__button" aria-label="Сохранить">Сохранить</button>
+                    <input id="name-input" name="inputChangeName" required class="form__input form__input_el_name" type="text" minlength="2" maxlength="40" placeholder="Введите имя" value="">
+                    <span id="name-input-error" class="form__input-error form__input-error_el_name"></span>
+                    <input id="job-input" name="inputChangeJob" required class="form__input form__input_el_spec" type="text" minlength="2" maxlength="200" placeholder="Специализация" value="">
+                    <span id="job-input-error" class="form__input-error form__input-error_el_spec"></span>
+                    <button name="buttonChangeSave" class="form__button" aria-label="Сохранить">Сохранить</button>
                 </form>
-                <button type="button" class="popup__close"></button>
+                <button name="buttonChangeClose" type="button" class="popup__close"></button>
             </div>
         </section>
-        <!--Попап создания карточки-->
-        <section class="popup popup_close popup_new">
+        <!--Попап добавления карточек-->
+        <section class="popup popup_new">
             <div class="popup__edit">
-                <form class="form form_new" action="#" method="post" name="form">
+                <form name="formAdd" class="form form_new" action="#" method="post" name="form">
                     <h2 class="form__title">Новое место</h2>
-                    <input required class="form__input form__input_el_name form__input_new_name" type="text" name="name" placeholder="Название" value="">
-                    <input required class="form__input form__input_el_spec form__input_new_link" type="text" name="link" placeholder="Ссылка на картинку" value="">
-                    <button class="form__button form__button_new" aria-label="Создать">Создать</button>
+                    <input id="name-input" name="inputAddName" required class="form__input form__input_el_name form__input_new_name" type="text" minlength="1" maxlength="30" placeholder="Название" value="">
+                    <span id="name-input-error" class="form__input-error form__input-error_el_name"></span>
+                    <input id="job-input" name="inputAddLink" required class="form__input form__input_el_spec form__input_new_link" type="url" placeholder="Ссылка на картинку" value="">
+                    <span id="job-input-error" class="form__input-error form__input-error_el_spec"></span>
+                    <button name="buttonAddMake" class="form__button form__button_new" aria-label="Создать">Создать</button>
                 </form>
                 <button type="button" class="popup__close popup__close_new"></button>
             </div>
         </section>
         <!--Попап увеличения картинки-->
-        <section class="popup popup_close popup_photo">
+        <section class="popup popup_photo">
             <div class="pop-image">
                 <div class="pop-image__container">
                     <img class="pop-image__image" src="" alt="">
@@ -67,11 +71,12 @@
                     <button type="button" class="pop-image__close"></button>
                 </div>
             </div>
-        </section>
+        </section> 
         <footer class="footer">
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </main>
+    <script src="./script/validate.js"></script>
     <script src="./script/script.js"></script>
 </body>
 </html>

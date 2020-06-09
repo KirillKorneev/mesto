@@ -11,8 +11,8 @@
     right: 0px;
     bottom: 0px;
     background: rgba(0, 0, 0, 0.5);
-    visibility: visible;
-    opacity: 1;
-    -moz-transition: opacity 0.5s;
+    visibility: hidden;
+    opacity: 0;
     transition: visibility 0.5s, opacity 0.5s linear;
+    -moz-transition: all 0.5s;
 }

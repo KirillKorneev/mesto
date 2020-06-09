@@ -1,24 +1,11 @@
-const formElement = document.querySelector('.popup'); //попап
-const form = document.querySelector('.form'); //форма
-const profileEdit = document.querySelector('.profile__edit'); //кнопка редактирования
-const formCloseButton = formElement.querySelector('.popup__close'); //кнопка закрытие формы
+//Общие константы
+const formElement = document.querySelector('.popup'); //попап изменения имени и работы
+const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
+const popupPhoto = document.querySelector('.popup_photo'); //попап увеличения фото
 const profileName = document.querySelector('.profile__name'); //имя в профиле
 const profileJob = document.querySelector('.profile__about');  //подпись в профиле
-const nameInput = formElement.querySelector('.form__input_el_name'); //имя в форме
-const jobInput = formElement.querySelector('.form__input_el_spec'); //подпись в форме
-const profileAddButton = document.querySelector('.profile__button'); //кнопка добавления карточки
-const formAddCard = document.querySelector('.popup_new'); //попап добавления карточки
-const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытия попапа добавления карточек
-const formAdd = document.querySelector('.form_new'); //форма добавления новой карточки
-const formPhoto = document.querySelector('.popup_photo'); //форма увеличения фото
-const popPhoto = document.querySelector('.popup_photo'); //попап увеличения фото
-const buttonClosePhoto = document.querySelector('.pop-image__close');
-const card = {
-    name: document.querySelector('.form__input_new_name'), //инпут названия в добавлении
-    link: document.querySelector('.form__input_new_link') //инпут ссылки в добавлении
-};
-
-const initialCards = [
+const elements = document.querySelector('.elements'); //список всех карточек
+const initialCards = [ //начальные карточки
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -45,17 +32,44 @@ const initialCards = [
     }
 ];
 
-const elements = document.querySelector('.elements'); //список всех карточек
+//Форма смены имени и работы
+const formChange = document.forms.formChange; //форма
+const inputChangeName = formChange.elements.inputChangeName; //инпут имени
+const inputChangeJob = formChange.elements.inputChangeJob; //инпут работы
+const profileEdit = document.querySelector('.profile__edit'); //кнопка открытия этой формы
+const formCloseButton = formElement.querySelector('.popup__close'); //кнопка закрытие этой формы
+
+//Форма добавления карточек
+const profileAddButton = document.querySelector('.profile__button'); //кнопка открытия этой формы
+const formAdd = document.forms.formAdd; //форма
+const closeButton = document.querySelector('.popup__close_new'); //кнопка закрытие этой формы
+const card = {
+    name: formAdd.elements.inputAddName, //инпут названия 
+    link: formAdd.elements.inputAddLink //инпут ссылки
+};
+
+//Попап увеличения картинки
+const buttonClosePhoto = document.querySelector('.pop-image__close'); //кретсик закрытия
 
 
-///Функция закрытия/открытия  формы, без отправки
-//спасибо, так намного лучше:)
+///Функция закрытия/открытия попапа, без отправки
 function toggleForm(el) {
     if (el === formElement) {
-        nameInput.value = profileName.textContent;
-        jobInput.value = profileJob.textContent;
+        inputChangeName.value = profileName.textContent;
+        inputChangeJob.value = profileJob.textContent;
     }
-    el.classList.toggle('popup_close');
+    el.classList.toggle('popup_open');
+    el.addEventListener('click', function(evt){
+        if(evt.target.classList.contains('popup')) {
+            toggleForm(el);
+        }
+    });
+    document.addEventListener('keydown', function(evt){
+        if(evt.key === "Escape") {
+            toggleForm(el);
+        }
+    });
+
 }
 
 ///Функция добавления карточек и лайков / удаления каточек
@@ -70,8 +84,8 @@ function addCards(el) {
     const deleteButton = element.querySelector('.element__delete');
     const likeButton = element.querySelector('.element__like');
 
-    const popImage = popPhoto.querySelector('.pop-image__image');
-    const popName = popPhoto.querySelector('.pop-image__about');
+    const popImage = popupPhoto.querySelector('.pop-image__image');
+    const popName = popupPhoto.querySelector('.pop-image__about');
     
 
     elementImage.src = el.link;
@@ -89,7 +103,7 @@ function addCards(el) {
         popImage.src = el.link;
         popName.textContent = el.name;
 
-        toggleForm(popPhoto);
+        toggleForm(popupPhoto);
     });
 
     elements.prepend(element);
@@ -111,15 +125,16 @@ function addNewCard(evt) {
 }
 
 ///Функция отправки формы
-function formSubmitHandler (evt) {
+function formSubmitHandler(evt) {
 
     evt.preventDefault();
 
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
+    profileName.textContent = inputChangeName.value;
+    profileJob.textContent = inputChangeJob.value;
 
     toggleForm(formElement);
 }
+
 
 
 ///Выводим первые 6 карточек
@@ -127,16 +142,25 @@ for (let i = 0; i < initialCards.length; i++) {
     addCards(initialCards[i]);
 }
 
-profileAddButton.addEventListener('click', () => toggleForm(formAddCard)); //открытие формы добавления карточек
-
+///Слушатели формы смены имени и работы
 profileEdit.addEventListener('click', () => toggleForm(formElement)); //открытие формы
-
-form.addEventListener('submit', formSubmitHandler); //отправка формы
-
+formChange.addEventListener('submit', formSubmitHandler); //отправка формы
 formCloseButton.addEventListener('click', () => toggleForm(formElement)); //закрытие без отправки
 
-formAdd.addEventListener('submit', addNewCard); //отправка формы добавления
 
-closeButton.addEventListener('click', () => toggleForm(formAddCard));  //закрытия формы добавления без отправки 
+///Слушатели формы добавления карточек
+profileAddButton.addEventListener('click', () => toggleForm(formAddCard)); //открытие формы 
+formAdd.addEventListener('submit', addNewCard); //отправка формы
+closeButton.addEventListener('click', () => toggleForm(formAddCard));  //закрытия без отправки 
 
-buttonClosePhoto.addEventListener('click', () => toggleForm(formPhoto)); //закрытие попапа увелтичения фото
+///Слушатели попапа увеличения фото
+buttonClosePhoto.addEventListener('click', () => toggleForm(popupPhoto)); //закрытие попапа на крестик
+
+///Функция валидации
+enableValidation({
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__button',
+    inactiveButtonClass: 'form__button_inactive',
+    inputErrorClass: 'form__input_error',
+});
