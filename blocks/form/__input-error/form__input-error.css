@@ -9,6 +9,7 @@
     color: #FF0000;
     position: fixed;
     width: 358px;
+    opacity: 0;
 }
 
 @media screen and (max-width: 767px) {

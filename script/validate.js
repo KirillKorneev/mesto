@@ -19,12 +19,14 @@ function showInputError(formElement, inputElement, errorMessage, object) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(object.inputErrorClass);
   errorElement.textContent = errorMessage;
+  errorElement.classList.add(object.errorClass);
 }
 
 ///Функция скрытия ошибки
 function hideInputError(formElement, inputElement, object) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(object.inputErrorClass);
+  errorElement.classList.remove(object.errorClass);
   errorElement.textContent = '';
 }
 

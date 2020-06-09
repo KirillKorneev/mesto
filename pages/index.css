@@ -14,3 +14,4 @@
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/pop-image/pop-image.css);
 @import url(../blocks/form/__button/_inactive/form__button_inactive.css);
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css);

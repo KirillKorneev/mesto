@@ -163,4 +163,5 @@ enableValidation({
     submitButtonSelector: '.form__button',
     inactiveButtonClass: 'form__button_inactive',
     inputErrorClass: 'form__input_error',
+    errorClass: 'form__input-error_active'
 });
