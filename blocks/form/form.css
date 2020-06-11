@@ -1,21 +1,15 @@
-@import url(./_new/form_new.css);
 @import url(./__title/form__title.css);
 @import url(./__input/form__input.css);
 @import url(./__input/_el/form__input_el_name.css);
 @import url(./__input/_el/form__input_el_spec.css);
 @import url(./__button/form__button.css);
-@import url(./__input/_new/form__input_new_link.css);
-@import url(./__input/_new/form__input_new_name.css);
 @import url(./__input-error/form__input-error.css);
 @import url(./__input/_error/form__input_error.css);
 
 .form {
     padding: 0px;
-    margin: 0px;
     background-color: white;
     border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
     margin: auto;
     padding-top: 31px;
     position: relative;

@@ -6,7 +6,6 @@
     font-weight: 500;
     font-size: 42px;
     grid-area: name;
-    margin: auto;
     text-overflow: ellipsis;
     max-width: 400px;
     overflow: hidden;

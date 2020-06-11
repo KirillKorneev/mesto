@@ -3,7 +3,6 @@
     margin: 0px;
     background-color: #FFFFFF;
     border-radius: 10px;
-    margin: auto;
     border: 0;
     position: fixed;
     padding-bottom: 37px;
@@ -18,7 +17,7 @@
         width: 240px;
         top: calc(50% - 180px);
         bottom: calc(50% - 180px);
-        left: calc(50% - 141px);
-        right: calc(50% - 141px);
+        left: calc(50% - 120px);
+        right: calc(50% - 120px);
     } 
 }

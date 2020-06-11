@@ -2,7 +2,7 @@
 @import url(./_el/form__input-error_el_spec.css);
 
 .form__input-error {
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
