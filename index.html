@@ -37,7 +37,7 @@
         <!--Попап смены имени и работы-->
         <section class="popup">
             <div class="popup__edit">
-                <form name="formChange" class="form" action="#" method="post">
+                <form novalidate name="formChange" class="form" action="#" method="post">
                     <h2 class="form__title">Редактировать профиль</h2>
                     <input id="name-input" name="inputChangeName" required class="form__input form__input_el_name" type="text" minlength="2" maxlength="40" placeholder="Введите имя" value="">
                     <span id="name-input-error" class="form__input-error form__input-error_el_name"></span>
@@ -51,7 +51,7 @@
         <!--Попап добавления карточек-->
         <section class="popup popup_new">
             <div class="popup__edit">
-                <form name="formAdd" class="form form_new" action="#" method="post">
+                <form novalidate name="formAdd" class="form form_new" action="#" method="post">
                     <h2 class="form__title">Новое место</h2>
                     <input id="title-input" name="inputAddName" required class="form__input form__input_el_name form__input_new_name" type="text" minlength="1" maxlength="30" placeholder="Название" value="">
                     <span id="title-input-error" class="form__input-error form__input-error_el_name"></span>
@@ -76,7 +76,9 @@
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </main>
-    <script src="./script/validate.js"></script>
-    <script src="./script/script.js"></script>
+    <!--<script type="module" src="./script/FormValidator.js"></script>
+    <script type="module" src="./script/Card.js"></script>-->
+    <script type="module" src="./script/index.js"></script>
+    <script src="./script/utils.js"></script>
 </body>
 </html>
