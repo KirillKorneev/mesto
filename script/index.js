@@ -1,6 +1,36 @@
 import {Card} from './Card.js'; 
 import {FormValidator} from './FormValidator.js';
 
+///Функция закрытия окна увеличения фото с удалением слушателя
+function closeForm(el) {
+    el.classList.remove('popup_open');
+    document.removeEventListener('keydown', (evt) => closePhoto(evt, el));
+}
+
+///Функция проверки кнопки
+function closePhoto(evt, el) {
+    if(evt.key === "Escape") {
+        closeForm(el);
+    }
+}
+
+///Функция закрытия/открытия попапа, без отправки
+function toggleForm(el) {
+    if (el === formElement) {
+        inputChangeName.value = profileName.textContent;
+        inputChangeJob.value = profileJob.textContent;
+    }
+    el.classList.toggle('popup_open');
+    el.addEventListener('click', function(evt){
+        if(evt.target.classList.contains('popup')) {
+            toggleForm(el);
+        }
+    });
+    if (el.classList.contains('popup_open')) {
+        document.addEventListener('keydown', (evt) => closePhoto(evt, el));
+    }
+}
+
 ///Функция формы добавления новой карточки
 function addNewCard(evt) {
 
@@ -50,8 +80,10 @@ formList.forEach((formElement) => {
 });
  
 ///Добавление карточек
-for (let i = 0; i < initialCards.length; i++) {
-    const card = new Card(initialCards[i].name, initialCards[i].link, '#tem-element');
+initialCards.forEach((el) => {
+    const card = new Card(el.name, el.link, '#tem-element');
     const cardElement = card.generateCards();
     elements.prepend(cardElement);
-}
+});
+
+export {toggleForm}

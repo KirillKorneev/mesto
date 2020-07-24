@@ -59,23 +59,3 @@ const cardInput = {
 
 //Попап увеличения картинки
 const buttonClosePhoto = document.querySelector('.pop-image__close'); //кретсик закрытия
-
-///Функция закрытия/открытия попапа, без отправки
-function toggleForm(el) {
-    if (el === formElement) {
-        inputChangeName.value = profileName.textContent;
-        inputChangeJob.value = profileJob.textContent;
-    }
-    el.classList.toggle('popup_open');
-    el.addEventListener('click', function(evt){
-        if(evt.target.classList.contains('popup')) {
-            toggleForm(el);
-        }
-    });
-    document.addEventListener('keydown', function(evt){
-        if(evt.key === "Escape") {
-            toggleForm(el);
-        }
-    });
-
-}

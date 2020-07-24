@@ -1,3 +1,5 @@
+import {toggleForm} from './index.js';
+
 class Card {
     constructor(cardName, cardLink, cardSelector) {
         this._cardSelector = cardSelector; //Шаблон
