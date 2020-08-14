@@ -59,3 +59,4 @@ const cardInput = {
 
 //Попап увеличения картинки
 const buttonClosePhoto = document.querySelector('.pop-image__close'); //кретсик закрытия
+
