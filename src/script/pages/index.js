@@ -3,11 +3,12 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {Popup} from '../components/Popup.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import { PopupWithForm} from '../components/PopupWithForm.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js'
 import {profileJob, profileName, inputChangeName, inputChangeJob, profileEdit, profileAddButton, formList,
         data, initialCards, elements, cardInput} from '../utils/constants.js';
-import '../../blocks/pages/index.css';
+import avatarImg from '../../images/avatar.jpg';
+import '../../pages/index.css';
 
 
 ///Слушатели формы смены имени и работы
