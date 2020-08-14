@@ -2,7 +2,7 @@
 const path = require('path'); // подключаем path к конфигу вебпак
 
 module.exports = {
-    entry: { main: './script/index.js' },
+    entry: { main: "./src/script/pages/index.js" },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
