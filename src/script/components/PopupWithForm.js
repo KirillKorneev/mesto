@@ -11,28 +11,26 @@ export class PopupWithForm extends Popup {
         const inputArray = Array.from(this._popupElement.querySelectorAll('.form__input'));
         const inputValues = {};
         inputArray.forEach((item) => {
-            console.log(item.name);
             inputValues[item.name] = item.value;
         });
         return inputValues;
     }
 
-    _close() {
+    close() {
         const inputArray = Array.from(this._popupElement.querySelectorAll('.form__input'));
-        if (!this._popupElement.classList.contains('popup_info')) {
-            inputArray.forEach((item) => {
-                item.value = '';
-            });
-        }
+        inputArray.forEach((item) => {
+            item.value = '';
+        });
         super.close();
     }
 
     setEventListeners() {
-        super._setEventListeners();
+        super.setEventListeners();
         this._popupElement.addEventListener('submit', (evt) => {
           evt.preventDefault();
-          this._sumbitPopup((this._getInputValues()));
-          this._close();
+          this._sumbitPopup(this._getInputValues());
+          console.log(this._getInputValues());
+          this.close();
         });
-      }
+    }
 }

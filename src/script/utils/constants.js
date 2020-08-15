@@ -43,7 +43,7 @@ export const initialCards = [ //начальные карточки
 ];
 
 //Форма смены имени и работы
-export const formChange = document.forms.formChange; //форма
+export const formChangeInfo = document.forms.formChange; //форма
 export const inputChangeName = formChange.elements.inputChangeName; //инпут имени
 export const inputChangeJob = formChange.elements.inputChangeJob; //инпут работы
 export const profileEdit = document.querySelector('.profile__edit'); //кнопка открытия этой формы

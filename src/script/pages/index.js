@@ -6,11 +6,11 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js'
 import {profileJob, profileName, inputChangeName, inputChangeJob, profileEdit, profileAddButton, formList,
-        data, initialCards, elements, cardInput} from '../utils/constants.js';
-import avatarImg from '../../images/avatar.jpg';
-import '../../pages/index.css';
+        data, initialCards, elements, cardInput, formChangeInfo, formAdd} from '../utils/constants.js';
+//import avatarImg from '../../images/avatar.jpg';
+//import '../../pages/index.css';
 
-
+let currentData;
 ///Слушатели формы смены имени и работы
 const popupInfo = new Popup('.popup_info')
 const popupInfoCurrent = new UserInfo({
@@ -18,23 +18,29 @@ const popupInfoCurrent = new UserInfo({
     userName: profileName
 });
 
-const currentData = popupInfoCurrent.getUserInfo();
-inputChangeName.value = currentData.name;
-inputChangeJob.value = currentData.job;
-
 const popupInfoForm = new PopupWithForm('.popup_info', (inputList) => {
-    profileName.textContent = inputChangeName.value;
-    profileJob.textContent = inputChangeJob.value;
+    console.log(inputList.inputChangeName);
+    console.log(inputList.inputChangeJob);
+    //profileName.textContent = inputList.inputChangeName;
+    //profileJob.textContent = inputList.inputChangeJob;
+    popupInfoCurrent.setUserInfo({
+        name: inputList.inputChangeName, 
+        job: inputList.inputChangeJob
+    });
 });
 
 profileEdit.addEventListener('click', () => {
+    currentData = popupInfoCurrent.getUserInfo();
+    console.log(currentData);
+    inputChangeName.value = currentData.name;
+    inputChangeJob.value = currentData.job;
     popupInfo.open();
 });
 
-formChange.addEventListener('submit', () => {
+
+formChangeInfo.addEventListener('submit', () => {
     popupInfoForm.setEventListeners();
 }); 
-
 
 ///Увеличенное фото
 const popupZoomPhoto = new PopupWithImage('.popup_photo');
@@ -42,7 +48,7 @@ const popupZoomPhoto = new PopupWithImage('.popup_photo');
 
 
 ///Слушатели формы добавления карточек
-const popupNewCard = new Popup('.popup_new');
+//const popupNewCard = new Popup('.popup_new');
 
 const popupNewCardForm = new PopupWithForm('.popup_new', () => {
     const cardValue = {
@@ -57,7 +63,7 @@ const popupNewCardForm = new PopupWithForm('.popup_new', () => {
 });
 
 profileAddButton.addEventListener('click', () => {
-    popupNewCard.open();
+    popupNewCardForm.open();
 }); 
 
 formAdd.addEventListener('submit', () => {

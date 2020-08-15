@@ -12,7 +12,7 @@ export class Popup {
         }
     }
 
-    _setEventListeners() {
+    setEventListeners() {
         this._popupElement
         .querySelector('.popup__close')
         .addEventListener('click', () => {
@@ -25,11 +25,7 @@ export class Popup {
     }
 
     open() {
-        this._setEventListeners();
-        if (this._popupElement.classList.contains('popup_info')) {
-            inputChangeName.value = profileName.textContent;
-            inputChangeJob.value = profileJob.textContent;
-        }
+        this.setEventListeners();
         this._popupElement.classList.add('popup_open');
         document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
         this._popupElement.addEventListener('click', function(evt){
