@@ -1,0 +1,32 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "[Сслыка на сам сайт](https://kirillkorneev.github.io/mesto/)",
+  "main": "index.js",
+  "dependencies": {
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "build": "rd /s /q dist && webpack", 
+    "dev": "webpack-dev-server --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KirillKorneev/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KirillKorneev/mesto/issues"
+  },
+  "homepage": "https://github.com/KirillKorneev/mesto#readme"
+}
