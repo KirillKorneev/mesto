@@ -4,8 +4,9 @@ export const formAddCard = document.querySelector('.popup_new'); //попап д
 export const popupPhoto = document.querySelector('.popup_photo'); //попап увеличения фото
 export const profileName = document.querySelector('.profile__name'); //имя в профиле
 export const profileJob = document.querySelector('.profile__about');  //подпись в профиле
+export const addButton = document.querySelector('.form__button_new'); //кнопка добавления карточек
 export const elements = document.querySelector('.elements'); //список всех карточек
-export const data = { //объект для форм
+export const formInfo = { //объект для форм
     formSelector: '.form',
     inputSelector: '.form__input',
     submitButtonSelector: '.form__button',
@@ -13,7 +14,7 @@ export const data = { //объект для форм
     inputErrorClass: 'form__input_error',
     errorClass: 'form__input-error_active'
 }
-export const formList = Array.from(document.querySelectorAll(data.formSelector)); //массив форм
+export const formList = Array.from(document.querySelectorAll(formInfo.formSelector)); //массив форм
 
 export const initialCards = [ //начальные карточки
     {

@@ -43,8 +43,9 @@ class Card {
 
         this._setEventListeners();
 
-        this._element.querySelector('.element__photo').src = `${this._cardLink}`;
-        this._element.querySelector('.element__photo').alt = this._cardName;
+        const elementPhoto = this._element.querySelector('.element__photo');
+        elementPhoto.src = `${this._cardLink}`;
+        elementPhoto.alt = this._cardName;
         this._element.querySelector('.element__info').querySelector('.element__name').textContent = this._cardName;
 
         return this._element;

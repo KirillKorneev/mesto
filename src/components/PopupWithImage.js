@@ -6,9 +6,10 @@ export class PopupWithImage extends Popup {
     }
 
     open(name, link) {
-        this._popupElement.querySelector('.pop-image__image').src = link;
+        const popupImage = this._popupElement.querySelector('.pop-image__image');
+        popupImage.src = link;
         this._popupElement.querySelector('.pop-image__about').textContent = name;
-        this._popupElement.querySelector('.pop-image__image').alt = name;
+        popupImage.alt = name;
         super.open();
     }
 }
