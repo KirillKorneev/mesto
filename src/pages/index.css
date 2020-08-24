@@ -9,8 +9,14 @@
 @import url(../blocks/element/__like/_black/element__like_black.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/_agree/form__title_agree.css);
+@import url(../blocks/form/__input/_update/form__input_update.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__edit/_agree/popup__edit_agree.css);
+@import url(../blocks/popup/__edit/_update/popup__edit_update.css);
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/pop-image/pop-image.css);
 @import url(../blocks/form/__button/_inactive/form__button_inactive.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
+@import url(../blocks/form/__button/_update/form__button_update.css);
+@import url(../blocks/form/__input-error/_update/form__input-error_update.css);

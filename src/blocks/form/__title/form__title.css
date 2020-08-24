@@ -8,5 +8,12 @@
     margin: 0;
     padding: 0;
     padding-bottom: 54px;
-    position: relative;
+    /*position: relative;*/
 } 
+
+@media screen and (max-width: 767px) {
+    .form__title {
+        height: 52px;
+        padding-bottom: 47px;
+    }
+}

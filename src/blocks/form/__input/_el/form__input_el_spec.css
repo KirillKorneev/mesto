@@ -1,10 +1,9 @@
 .form__input_el_spec {
-    top: calc(50% + 30px - 27px);
-    right: calc(50% - 358px / 2);
+    margin-bottom: 34px;
 }
 
 @media screen and (max-width: 767px) {
     .form__input_el_spec {
-        right: calc(50% - 200px / 2);
+        margin-bottom: 27px;
     }
 }

@@ -52,7 +52,7 @@ class FormValidator {
       this._hideInputError(_inputElement);
     }
   }
-
+  
   ///Функция вставки слушателей
   _setEventListeners() {
     const _inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));

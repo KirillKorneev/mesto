@@ -6,8 +6,8 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js'
 import {profileJob, profileName, inputChangeName, inputChangeJob, profileEdit, profileAddButton, formList,
         formInfo, initialCards, elements, cardInput, formChangeInfo, formAdd, formElement, formAddCard, addButton} from '../utils/constants.js';
-import avatarImg from '../images/avatar.jpg';
-import '../pages/index.css';
+//import avatarImg from '../images/avatar.jpg';
+//import '../pages/index.css';
 
 ///Валидация форм
 formList.forEach((formElement) => {

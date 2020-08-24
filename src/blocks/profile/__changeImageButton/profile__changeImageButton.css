@@ -1,0 +1,10 @@
+.profile__changeImageButton {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.profile__changeImageButton:hover {
+    opacity: 1;
+}

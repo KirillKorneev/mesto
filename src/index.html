@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" type="text/css" href="./pages/index.css">-->
+    <link rel="stylesheet" type="text/css" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="page">
@@ -12,7 +12,11 @@
     </header>
     <main class="content">
         <section class="profile">
-            <div class="profile__avatar"></div>
+            <div class="profile__avatar">
+                <button class="profile__changeImageButton">
+                    <img class="profile__pencil" src="./images/pencil_hover.png">
+                </button>
+            </div>
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit" aria-label="Открытие формы"></button>
@@ -63,13 +67,38 @@
                 </div>
             </div>
         </section> 
+        <!--Попап "Вы уверены?"-->
+        <section class="popup popup_agreement">
+            <div class="popup__edit popup__edit_agree">
+                <form novalidate name="formAdd" class="form" action="#" method="post">
+                    <h2 class="form__title form__title_agree">Вы уверены?</h2>
+                    <button name="buttonAddMake" class="form__button form__button_agree" aria-label="Да">Да</button>
+                </form>
+                <button type="button" class="popup__close popup__close_agree"></button>
+            </div>
+        </section>
+        <!--Попап обновления фото-->
+        <section class="popup popup_updatePhoto">
+            <div class="popup__edit popup__edit_update">
+                <form novalidate name="formAdd" class="form" action="#" method="post">
+                    <h2 class="form__title">Обновить аватар</h2>
+                    <input id="title-input" name="inputAddName" required class="form__input form__input_update form__input_el_name " type="url" minlength="1" maxlength="30" placeholder="Ссылка" value="">
+                    <span id="title-input-error" class="form__input-error form__input-error_update form__input-error_el_name"></span>
+                    <button name="buttonAddMake" class="form__button form__button_update" aria-label="Да">Сохранить</button>
+                </form>
+                <button type="button" class="popup__close"></button>
+            </div>
+        </section>
         <!--Шаблон карточки-->
         <template id="tem-element">
             <li class="element">
                 <img class="element__photo" src="#" alt="Описание фото">
                 <div class="element__info">
                     <h2 class="element__name">Название</h2>
-                    <button type="button" class="element__like" aria-label="Лайк"></button>
+                    <div class="element__data">
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
+                        <p class="element__counter">3</p>
+                    </div>
                 </div>
                 <button type="button" class="element__delete" aria-label="Удалить"></button>
             </li>
@@ -79,7 +108,7 @@
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </main>
-    <!--<script type="module" src="./pages/index.js"></script>-->
+    <script type="module" src="./pages/index.js"></script>
     
 </body>
 </html>

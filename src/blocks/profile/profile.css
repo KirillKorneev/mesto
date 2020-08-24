@@ -5,6 +5,8 @@
 @import url(../profile/__about/profile__about.css);
 @import url(../profile/__edit/profile__edit.css);
 @import url(../profile/__image/profile__image.css);
+@import url(./__pencil/profile__pencile.css);
+@import url(./__changeImageButton/profile__changeImageButton.css);
 
 .profile {
     display: flex;
