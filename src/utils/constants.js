@@ -61,3 +61,6 @@ export const cardInput = {
 
 //Попап увеличения картинки
 export const buttonClosePhoto = document.querySelector('.pop-image__close'); //кретсик закрытия
+
+export const profilePhoto = document.querySelector('.profile__avatar'); //аватарка
+export const profileChangeAvatarButton = document.querySelector('.profile__changeImageButton');

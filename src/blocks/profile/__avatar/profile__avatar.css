@@ -7,21 +7,21 @@
     margin-right: 30px;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
-/*.profile__avatar:before {
+.profile__avatar:before {
     content: '';
     position: absolute;
     left: 0px;
     top: 0px;
     right: 0px;
     bottom: 0px;
-    background: rgba(0,0,0,0.3);
     transition: all 1s linear;
-}*/
+}
 
-.profile__avatar:hover {
-    background: rgba(0,0,0,0.2);
+.profile__avatar:hover:before {
+    background: rgba(0,0,0,0.6);
 }
 
 @media screen and (max-width: 767px) {

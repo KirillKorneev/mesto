@@ -1,22 +1,18 @@
 .profile__changeImageButton {
-    background-color: transparent;
+    background: transparent;
+    background-repeat: no-repeat;
+    height: 120px;
+    width: 120px;
     cursor: pointer;
     border: 0px;
     margin: 0px;
     padding: 0px;
+    z-index: 11;
+    
 }
 
-/*.profile__changeImageButton:before {
-    content: '';
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    background: rgba(0,0,0,0.3);
-    transition: all 1s linear;
+.profile__changeImageButton:hover {
+    background: url(../../../images/pencil_hover.png);
+    background-repeat: no-repeat;
+    background-position: center ;
 }
-
-.profile__changeImageButton:hover:before {
-    background: rgba(0,0,0,0.8);
-}*/

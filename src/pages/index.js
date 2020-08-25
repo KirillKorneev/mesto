@@ -3,16 +3,38 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
-import {UserInfo} from '../components/UserInfo.js'
+import {UserInfo} from '../components/UserInfo.js';
+import {Api} from '../components/Api.js';
 import {profileJob, profileName, inputChangeName, inputChangeJob, profileEdit, profileAddButton, formList,
         formInfo, initialCards, elements, cardInput, formChangeInfo, formAdd, formElement, formAddCard, addButton} from '../utils/constants.js';
 //import avatarImg from '../images/avatar.jpg';
 //import '../pages/index.css';
 
+///Абсолютно пустая секция
+const cards = new Section({ 
+    items: null,
+    renderer: null
+}, '.elements');
+
+
+const api = new Api({
+    baseURL: 'https://mesto.nomoreparties.co/v1/cohort-14', 
+    headers: {
+        'Content-Type': 'application/json',
+        'authorization': '42b45684-18cf-461b-be7b-02246c8d8e0d'
+    }
+})
+
 ///Валидация форм
 formList.forEach((formElement) => {
     const form = new FormValidator(formInfo, formElement);
     form.enableValidation();
+});
+
+///Установка начальных значений профиля
+api.getUserInformation('users/me').then(res => {
+    profileJob.textContent = res.about;
+    profileName.textContent = res.name;
 });
 
 ///Слушатели формы смены имени и работы
@@ -22,10 +44,14 @@ const popupInfoCurrent = new UserInfo({
 });
 
 const popupInfoForm = new PopupWithForm('.popup_info', (inputList) => {
-    popupInfoCurrent.setUserInfo({
-        name: inputList.inputChangeName, 
-        job: inputList.inputChangeJob
+    api.profileEding('users/me', inputList.inputChangeName, inputList.inputChangeJob)
+    .then(res => {
+        popupInfoCurrent.setUserInfo({
+            name: res.name, 
+            job: res.about
+        });
     });
+    
 });
 
 popupInfoForm.setEventListeners();
@@ -55,13 +81,20 @@ function generationCard(name, link) {
     cards.addItem(cardElement);
 }
 
-///Первые карточки
-const cards = new Section({
-    items: initialCards,
-    renderer: (el) => {
-        generationCard(el.name, el.link);
-    }
-}, '.elements');
+///Добавление карточек, которые есть в массиве 
+api.getItems('cards').then(res => {
+    const cards = new Section({
+        items: res,
+        renderer: (res) => {
+            const card = new Card(res.name, res.link, () => {
+                popupZoomPhoto.open(res.name, res.link);
+            } ,'#tem-element');
+            const cardElement = card.generateCards();
+            cards.addItem(cardElement);
+        }
+    }, '.elements');
+    cards.renderItems();
+});
 
 ///Слушатели формы добавления карточек
 const popupNewCardForm = new PopupWithForm('.popup_new', () => {
@@ -69,10 +102,14 @@ const popupNewCardForm = new PopupWithForm('.popup_new', () => {
         name: cardInput.name.value,
         link: cardInput.link.value
     };
-    generationCard(cardValue.name, cardValue.link);
+    api.createItem('cards', cardValue.name, cardValue.link).then(res => {
+        const card = new Card(res.name, res.link, () => {
+            popupZoomPhoto.open(res.name, res.link);
+        } ,'#tem-element');
+        const cardElement = card.generateCards();
+        cards.addItem(cardElement);
+    });
 });
 
 popupNewCardForm.setEventListeners();
-
-cards.renderItems();
 
