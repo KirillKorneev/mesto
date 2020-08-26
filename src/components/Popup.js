@@ -1,19 +1,19 @@
-import {inputChangeName, inputChangeJob, profileName, profileJob} from '../utils/constants.js';
-
 export class Popup {
     constructor(selector) {
         this._popupElement = document.querySelector(selector);
     }
 
-    _handleEscClose(evt) {
-        if(evt.key === "Escape") {
-            this.close();
+    _handleEscClose() {
+        return (evt) => {
+            if(evt.key === "Escape") {
+                this.close();
+            }
         }
     }
 
     close() {
         this._popupElement.classList.remove('popup_open');
-        document.removeEventListener('keydown', (evt) => this._handleEscClose());
+        document.removeEventListener('keydown', this._handleEscClose());
     }
 
     setEventListeners() {
@@ -30,7 +30,7 @@ export class Popup {
     }
 
     open() {
-        document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+        document.addEventListener('keydown', this._handleEscClose());
         this._popupElement.classList.add('popup_open');
     }
 }

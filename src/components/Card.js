@@ -37,11 +37,15 @@ class Card {
         this._element.remove();
     }
 
+    removeCard() {
+        this._element.remove();
+    }
+
     //Функция задавания слушателей
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => this._toggleLike() );
         this._element.querySelector('.element__delete').addEventListener('click', () => this._deleteCard() );
-        this._element.querySelector('.element__photo').addEventListener('click', (cardId) => this._handleCardClick() );
+        this._element.querySelector('.element__photo').addEventListener('click', () => this._handleCardClick() );
     }
 
     getView(userId, ownerId) {
