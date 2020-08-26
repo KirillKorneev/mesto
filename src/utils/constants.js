@@ -64,3 +64,4 @@ export const buttonClosePhoto = document.querySelector('.pop-image__close'); //�
 
 export const profilePhoto = document.querySelector('.profile__avatar'); //аватарка
 export const profileChangeAvatarButton = document.querySelector('.profile__changeImageButton');
+export const changeAvatarButton = document.querySelector('.form__button_update');

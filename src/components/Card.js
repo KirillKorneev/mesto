@@ -1,10 +1,17 @@
 class Card {
-    constructor(cardName, cardLink, handleCardClick ,cardSelector) {
-        this._cardSelector = cardSelector; //Шаблон
-        this._cardName = cardName; //Название
-        this._cardLink = cardLink; //Ссылка
-        this._cardLike = false; //Лайкнута?
+    constructor({
+        cardName, cardLink,
+        handleCardClick,
+        handleLikeClick,
+        handleDeleteIconClick
+    }, cardSelector) {
+        this._cardSelector = cardSelector; 
+        this._cardName = cardName; 
+        this._cardLink = cardLink; 
+        this._cardLike = false; 
         this._handleCardClick = handleCardClick;
+        this._handleLikeClick = handleLikeClick;
+        this._handleDeleteIconClick = handleDeleteIconClick;
     }
 
     //Функция клонирования шаблона
@@ -20,12 +27,13 @@ class Card {
 
     //Функция проставки лайка(или его убирания)
     _toggleLike() {
-        this._cardLike = !this._cardLike;
+        this._handleLikeClick();
         this._element.querySelector('.element__like').classList.toggle('element__like_black');
     }
 
     //Функция удаления карточки
     _deleteCard() {
+        this._handleDeleteIconClick();
         this._element.remove();
     }
 
@@ -33,10 +41,16 @@ class Card {
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => this._toggleLike() );
         this._element.querySelector('.element__delete').addEventListener('click', () => this._deleteCard() );
-        this._element.querySelector('.element__photo').addEventListener('click', () => this._handleCardClick() );
+        this._element.querySelector('.element__photo').addEventListener('click', (cardId) => this._handleCardClick() );
     }
 
-    
+    getView(userId, ownerId) {
+        if (userId === ownerId) {
+            return true;
+        }
+        return false;
+    }
+
     //Функция создания карточек
     generateCards() {
         this._element = this._getTemplate();

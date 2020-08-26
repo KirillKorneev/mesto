@@ -19,7 +19,7 @@ export class Api {
         });
     }
 
-    deleteItem(id, cardId) { //id = cards  cardId = cardId
+    deleteItem(id, cardId) { //id = cards  cardId = cardId +
         return fetch(`${this.baseURL}/${id}/${cardId}`, {
             method: 'DELETE',
             headers: this.headers
@@ -55,7 +55,7 @@ export class Api {
         });
     }
 
-    putLike(id, cardId) { //id = cards/like cardId = cardId
+    putLike(id, cardId) { //id = cards/likes cardId = cardId +
         return fetch(`${this.baseURL}/${id}/${cardId}`, {
             method: 'PUT',
             headers: this.headers
@@ -71,7 +71,7 @@ export class Api {
         });
     }
 
-    removeLike(id, cardId) { //id = cards/like cardId = cardId
+    removeLike(id, cardId) { //id = cards/likes cardId = cardId
         return fetch(`${this.baseURL}/${id}/${cardId}`, {
             method: 'DELETE',
             headers: this.headers
@@ -122,11 +122,13 @@ export class Api {
         });
     }
 
-    avatarEding(id, avatar) { // id = users/me/avatar
+    avatarEding(id, avatar) { // id = users/me/avatar +
         return fetch(`${this.baseURL}/${id}`, {
-            methosd: 'PATCH',
+            method: 'PATCH',
             headers: this.headers,
-            body: JSON.stringify(avatar)
+            body: JSON.stringify({
+                avatar: avatar
+            })
         })
         .then(res => {
             if (res.ok) {

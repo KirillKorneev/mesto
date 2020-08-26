@@ -4,11 +4,16 @@ import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
+import {PopupChangeAvatar} from '../components/PopupChangeAvatar.js';
+import {PopupAgreement} from '../components/PopupAgreement.js';
 import {Api} from '../components/Api.js';
 import {profileJob, profileName, inputChangeName, inputChangeJob, profileEdit, profileAddButton, formList,
-        formInfo, initialCards, elements, cardInput, formChangeInfo, formAdd, formElement, formAddCard, addButton} from '../utils/constants.js';
+        formInfo, initialCards, elements, cardInput, formChangeInfo, formAdd, formElement, formAddCard, addButton,
+        profileChangeAvatarButton, changeAvatarButton, profilePhoto} from '../utils/constants.js';
 //import avatarImg from '../images/avatar.jpg';
 //import '../pages/index.css';
+
+let userId = 0; ///айди юзера
 
 ///Абсолютно пустая секция
 const cards = new Section({ 
@@ -35,6 +40,8 @@ formList.forEach((formElement) => {
 api.getUserInformation('users/me').then(res => {
     profileJob.textContent = res.about;
     profileName.textContent = res.name;
+    profilePhoto.style = `background-image: url(${res.avatar});`;
+    userId = res._id;
 });
 
 ///Слушатели формы смены имени и работы
@@ -81,15 +88,48 @@ function generationCard(name, link) {
     cards.addItem(cardElement);
 }
 
+///Попап удаления карточки
+const popupDeleteCard = new PopupAgreement('.popup_agreement', () => {
+    document.querySelector('.popup_agreement').classList.add('popup_open');
+    api.deleteItem('cards', cardId);
+})
+
 ///Добавление карточек, которые есть в массиве 
 api.getItems('cards').then(res => {
     const cards = new Section({
         items: res,
         renderer: (res) => {
-            const card = new Card(res.name, res.link, () => {
-                popupZoomPhoto.open(res.name, res.link);
-            } ,'#tem-element');
+            const cardId = res._id;
+            const card = new Card({
+                cardName: res.name, 
+                cardLink: res.link,
+                handleCardClick: () => {
+                    popupZoomPhoto.open(res.name, res.link);
+                },
+                handleLikeClick: () => {
+                    if(!cardElement.querySelector('.element__like').classList.contains('element__like_black')) {
+                        api.putLike('cards/likes', cardId);
+                        cardElement.querySelector('.element__counter').textContent = res.likes.length + 1;
+                    }
+                    else {
+                        api.removeLike('cards/likes', cardId);
+                        cardElement.querySelector('.element__counter').textContent = res.likes.length - 1;
+                    }
+                },
+                handleDeleteIconClick: () => {
+                    popupDeleteCard.setEventListeners();
+                }
+            }, '#tem-element');
             const cardElement = card.generateCards();
+            if(!card.getView(userId, res.owner._id)) {
+                cardElement.querySelector('.element__delete').remove();
+            }
+            for(let i = 0; i < res.likes.length; i++) {
+                if (res.likes[i]._id === userId) {
+                    cardElement.querySelector('.element__like').classList.toggle('element__like_black');
+                }
+            }
+            cardElement.querySelector('.element__counter').textContent = res.likes.length;
             cards.addItem(cardElement);
         }
     }, '.elements');
@@ -103,13 +143,53 @@ const popupNewCardForm = new PopupWithForm('.popup_new', () => {
         link: cardInput.link.value
     };
     api.createItem('cards', cardValue.name, cardValue.link).then(res => {
-        const card = new Card(res.name, res.link, () => {
-            popupZoomPhoto.open(res.name, res.link);
-        } ,'#tem-element');
+        const cardId = res._id;
+        const card = new Card({
+            cardName: res.name, 
+            cardLink: res.link,
+            handleCardClick: () => {
+                popupZoomPhoto.open(res.name, res.link);
+            },
+            handleLikeClick: () => {
+                if(!cardElement.querySelector('.element__like').classList.contains('element__like_black')) {
+                    api.putLike('cards/likes', cardId);
+                    cardElement.querySelector('.element__counter').textContent = res.likes.length + 1;
+                }
+                else {
+                    api.removeLike('cards/likes', cardId);
+                    cardElement.querySelector('.element__counter').textContent = res.likes.length - 1;
+                }
+            },
+            handleDeleteIconClick: () => {
+                popupDeleteCard.setEventListeners();
+            }
+        }, '#tem-element');
         const cardElement = card.generateCards();
+        for(let i = 0; i < res.likes.length; i++) {
+            if (res.likes[i]._id === userId) {
+                cardElement.querySelector('.element__like').classList.toggle('element__like_black');
+            }
+        }
+        cardElement.querySelector('.element__counter').textContent = res.likes.length;
         cards.addItem(cardElement);
     });
 });
 
 popupNewCardForm.setEventListeners();
+
+///Слушатели смены фотографии
+const popupChangePhoto = new PopupChangeAvatar('.popup_updatePhoto', (value) => {
+    api.avatarEding('users/me/avatar', value.inputAddName).then(res => {
+        profilePhoto.style = `background-image: url(${res.avatar});`;
+    })
+});
+
+popupChangePhoto.setEventListeners();
+
+profileChangeAvatarButton.addEventListener('click', () => {
+    changeAvatarButton.disabled = 'true';
+    changeAvatarButton.classList.add('form__button_inactive');
+    popupChangePhoto.open();
+});
+
 
