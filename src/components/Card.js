@@ -25,16 +25,38 @@ class Card {
         return cardElement;
     }
 
+    isLiked() {
+        return this._element.querySelector('.element__like').classList.contains('element__like_black');
+    }
+
+    plusLike(res) {
+        this._element.querySelector('.element__counter').textContent = res.likes.length + 1;
+    }
+
+    minusLike(res) {
+        this._element.querySelector('.element__counter').textContent = res.likes.length - 1;
+    }
+
+    removeTrash() {
+        this._element.querySelector('.element__delete').remove();
+    }
+
+    setLikes(res) {
+        this._element.querySelector('.element__counter').textContent = res.likes.length;
+    }
+
+    toggleLikeButton() {
+        this._element.querySelector('.element__like').classList.toggle('element__like_black');
+    }
+
     //Функция проставки лайка(или его убирания)
     _toggleLike() {
         this._handleLikeClick();
-        this._element.querySelector('.element__like').classList.toggle('element__like_black');
     }
 
     //Функция удаления карточки
     _deleteCard() {
         this._handleDeleteIconClick();
-        this._element.remove();
     }
 
     removeCard() {

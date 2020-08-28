@@ -4,18 +4,20 @@ export class Api {
         this.headers = headers;
     }
 
+    _getResponseData(res) {
+        if(res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);  
+        
+    }
+
     getItems(id) { //id = cards +
         return fetch(`${this.baseURL}/${id}`, {
             headers: this.headers
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -25,13 +27,7 @@ export class Api {
             headers: this.headers
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -45,13 +41,7 @@ export class Api {
             })
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -61,13 +51,7 @@ export class Api {
             headers: this.headers
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -77,13 +61,7 @@ export class Api {
             headers: this.headers
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -92,13 +70,7 @@ export class Api {
             headers: this.headers
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -112,13 +84,7 @@ export class Api {
             })
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 
@@ -131,13 +97,7 @@ export class Api {
             })
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            return this._getResponseData(res);
         });
     }
 }

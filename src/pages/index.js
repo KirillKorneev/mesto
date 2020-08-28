@@ -38,28 +38,11 @@ formList.forEach((formElement) => {
     form.enableValidation();
 });
 
-///Установка начальных значений страницы
-Promise.all([
-    api.getUserInformation('users/me'),
-    api.getItems('cards')
-])
-.then((res) => {
-    const [userInfo, firstCards] = res;
-    profileJob.textContent = userInfo.about;
-    profileName.textContent = userInfo.name;
-    profilePhoto.style = `background-image: url(${userInfo.avatar});`;
-    const userId = userInfo._id;
-    const cards = new Section({
-        items: firstCards,
-        renderer: (firstCards) => {
-            const cardId = firstCards._id;
-            generateCard(cardId, firstCards, userId);
-        }
-    }, '.elements');
-    cards.renderItems();
-})
-.catch((err) => {
-    console.log(`Ошибка ${err}`);
+///Слушатели формы смены имени и работы
+const popupInfoCurrent = new UserInfo({
+    userInfo: profileJob,
+    userName: profileName,
+    userAvatar: profilePhoto
 });
 
 function renderLoading(element, isLoading, loadingText, usualText) {
@@ -79,25 +62,45 @@ function generateCard(cardId, res, userId) {
             popupZoomPhoto.open(res.name, res.link);
         },
         handleLikeClick: () => {
-            if(!cardElement.querySelector('.element__like').classList.contains('element__like_black')) {
-                api.putLike('cards/likes', cardId);
-                cardElement.querySelector('.element__counter').textContent = res.likes.length + 1;
+            if(!card.isLiked()) {
+                api.putLike('cards/likes', cardId)
+                .then(data => {
+                    card.toggleLikeButton();
+                })
+                .catch((err) => {
+                    console.log(`Ошибка ${err}`)
+                })
+                .finally(() => {
+                    card.plusLike(res);
+                });
+                
             }
             else {
-                api.removeLike('cards/likes', cardId);
-                cardElement.querySelector('.element__counter').textContent = res.likes.length - 1;
+                api.removeLike('cards/likes', cardId)
+                .then(data => {
+                    card.toggleLikeButton();
+                })
+                .catch((err) => {
+                    console.log(`Ошибка ${err}`)
+                })
+                .finally(() => {
+                    card.minusLike(res);
+                });
             }
         },
         handleDeleteIconClick: () => {
             popupDeleteCard.setSubmitAction(_ => {
                 renderLoading(popupDeleteAgree, true, 'Удаление...', 'Удалить');
                 api.deleteItem('cards', cardId)
-                .then(res => {
+                .then(data => {
                     card.removeCard();
                 })
-                .catch(err => console.log(`Ошибка ${err}`))
+                .catch((err) => {
+                    console.log(`Ошибка ${err}`)
+                })
                 .finally(() => {
                     renderLoading(popupDeleteAgree, false, 'Удаление...', 'Удалить');
+                    popupDeleteCard.close();
                 });
             })
             popupDeleteCard.open();
@@ -105,21 +108,41 @@ function generateCard(cardId, res, userId) {
     }, '#tem-element');
     const cardElement = card.generateCards();
     if(!card.getView(userId, res.owner._id)) {
-        cardElement.querySelector('.element__delete').remove();
+        card.removeTrash()
     }
     for(let i = 0; i < res.likes.length; i++) {
         if (res.likes[i]._id === userId) {
-            cardElement.querySelector('.element__like').classList.toggle('element__like_black');
+            card.toggleLikeButton();
         }
     }
-    cardElement.querySelector('.element__counter').textContent = res.likes.length;
+    card.setLikes(res);
     cards.addItem(cardElement);
 }
 
-///Слушатели формы смены имени и работы
-const popupInfoCurrent = new UserInfo({
-    userInfo: profileJob,
-    userName: profileName
+///Установка начальных значений страницы
+Promise.all([
+    api.getUserInformation('users/me'),
+    api.getItems('cards')
+])
+.then((res) => {
+    const [userInfo, firstCards] = res;
+    popupInfoCurrent.setUserInfo({
+        name: userInfo.name, 
+        job: userInfo.about,
+        url: userInfo.avatar
+    });
+    const userId = userInfo._id;
+    const cards = new Section({
+        items: firstCards,
+        renderer: (item) => {
+            const cardId = item._id;
+            generateCard(cardId, item, userId);
+        }
+    }, '.elements');
+    cards.renderItems();
+})
+.catch((err) => {
+    console.log(`Ошибка ${err}`)
 });
 
 const popupInfoForm = new PopupWithForm('.popup_info', (inputList) => {
@@ -128,11 +151,16 @@ const popupInfoForm = new PopupWithForm('.popup_info', (inputList) => {
     .then(res => {
         popupInfoCurrent.setUserInfo({
             name: res.name, 
-            job: res.about
+            job: res.about,
+            url: res.avatar
         });
+    })
+    .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
     })
     .finally(() => {
         renderLoading(formElement, false, 'Сохранение...', 'Сохранить');
+        popupInfoForm.close();
     });
     
 });
@@ -178,20 +206,29 @@ const popupNewCardForm = new PopupWithForm('.popup_new', () => {
     })
     .finally(() => {
         renderLoading(formAddCard, false, 'Создание...', 'Создать');
+        popupNewCardForm.close();
     });
 });
 
 popupNewCardForm.setEventListeners();
 
 ///Слушатели смены фотографии
-const popupChangePhoto = new PopupChangeAvatar('.popup_updatePhoto', (value) => {
+const popupChangePhoto = new PopupWithForm('.popup_updatePhoto', (value) => {
     renderLoading(popupUpdatePhoto, true, 'Сохранение...', 'Сохранить');
     api.avatarEding('users/me/avatar', value.inputAddName)
     .then(res => {
-        profilePhoto.style = `background-image: url(${res.avatar});`;
+        popupInfoCurrent.setUserInfo({
+            name: res.name, 
+            job: res.about,
+            url: res.avatar
+        });
+    })
+    .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
     })
     .finally(() => {
         renderLoading(popupUpdatePhoto, false, 'Сохранение...', 'Сохранить');
+        popupChangePhoto.close();
     });
 });
 

@@ -28,7 +28,6 @@ export class PopupWithForm extends Popup {
         this._popupElement.addEventListener('submit', (evt) => {
           evt.preventDefault();
           this._sumbitPopup(this._getInputValues());
-          this.close();
         });
     }
 }
