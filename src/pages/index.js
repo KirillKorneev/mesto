@@ -66,25 +66,20 @@ function generateCard(cardId, res, userId) {
                 api.putLike('cards/likes', cardId)
                 .then(data => {
                     card.toggleLikeButton();
+                    card.plusLike(res);
                 })
                 .catch((err) => {
                     console.log(`Ошибка ${err}`)
-                })
-                .finally(() => {
-                    card.plusLike(res);
                 });
-                
             }
             else {
                 api.removeLike('cards/likes', cardId)
                 .then(data => {
                     card.toggleLikeButton();
+                    card.minusLike(res);
                 })
                 .catch((err) => {
                     console.log(`Ошибка ${err}`)
-                })
-                .finally(() => {
-                    card.minusLike(res);
                 });
             }
         },
@@ -94,13 +89,13 @@ function generateCard(cardId, res, userId) {
                 api.deleteItem('cards', cardId)
                 .then(data => {
                     card.removeCard();
+                    popupDeleteCard.close();
                 })
                 .catch((err) => {
                     console.log(`Ошибка ${err}`)
                 })
                 .finally(() => {
                     renderLoading(popupDeleteAgree, false, 'Удаление...', 'Удалить');
-                    popupDeleteCard.close();
                 });
             })
             popupDeleteCard.open();
@@ -154,15 +149,14 @@ const popupInfoForm = new PopupWithForm('.popup_info', (inputList) => {
             job: res.about,
             url: res.avatar
         });
+        popupInfoForm.close();
     })
     .catch((err) => {
         console.log(err); // выведем ошибку в консоль
     })
     .finally(() => {
         renderLoading(formElement, false, 'Сохранение...', 'Сохранить');
-        popupInfoForm.close();
     });
-    
 });
 
 popupInfoForm.setEventListeners();
@@ -200,13 +194,13 @@ const popupNewCardForm = new PopupWithForm('.popup_new', () => {
         const userId = userInfo._id;
         const cardId = item._id;
         generateCard(cardId, item, userId);
+        popupNewCardForm.close();
     })
     .catch((err) => {
         console.log(`Ошибка ${err}`);
     })
     .finally(() => {
         renderLoading(formAddCard, false, 'Создание...', 'Создать');
-        popupNewCardForm.close();
     });
 });
 
@@ -222,13 +216,13 @@ const popupChangePhoto = new PopupWithForm('.popup_updatePhoto', (value) => {
             job: res.about,
             url: res.avatar
         });
+        popupChangePhoto.close();
     })
     .catch((err) => {
         console.log(err); // выведем ошибку в консоль
     })
     .finally(() => {
         renderLoading(popupUpdatePhoto, false, 'Сохранение...', 'Сохранить');
-        popupChangePhoto.close();
     });
 });
 
